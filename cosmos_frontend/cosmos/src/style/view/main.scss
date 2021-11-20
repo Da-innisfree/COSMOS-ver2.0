@@ -1,0 +1,49 @@
+@mixin comm_contne() {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+    width: 60%;
+    height: 50%;
+    margin: auto;
+
+    .main_title {
+        font-size: 24px;
+        color: #fff;
+    }
+
+    .sub_title {
+        font-size: 16px;
+        color: #fff;
+    }
+}
+
+.main {
+    background-color: royalblue;
+    height: 100vh;
+    .area_top {
+        width: 100%;
+        height: 600px;
+        background-color: green;
+        
+        .content {
+            @include comm_contne();
+        }
+    }
+    .area_middle {
+        width: 100%;
+        height: 300px;
+        background-color: purple;
+        .content {
+            @include comm_contne();
+        }
+    }
+    .area_bottom {
+        width: 100%;
+        height: 600px;
+        background-color: blue;
+        .content {
+            @include comm_contne();
+        }
+    }
+}
