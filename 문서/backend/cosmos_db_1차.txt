@@ -1,0 +1,76 @@
+USE cosmos;
+​
+CREATE TABLE tb_user (
+user_id VARCHAR(60) PRIMARY KEY,
+user_pw VARCHAR(100),
+user_name VARCHAR(50),
+user_phone VARCHAR(60)
+);
+​
+create TABLE tb_user_auth(
+user_id VARCHAR(60),
+user_auth VARCHAR(50),
+FOREIGN KEY(user_id) REFERENCES tb_user(user_id)  ON DELETE CASCADE
+);
+​
+CREATE TABLE tb_user_address(
+user_id VARCHAR(60),
+address VARCHAR(100),
+address_detail VARCHAR(100),
+postcode VARCHAR(50),
+FOREIGN KEY(user_id) REFERENCES tb_user(user_id)  ON DELETE CASCADE
+);
+​
+CREATE TABLE tb_order(
+order_id VARCHAR(60) PRIMARY key,
+user_id VARCHAR(100),
+order_addr VARCHAR(100),
+order_addr_detail VARCHAR(100),
+order_addr_postcode VARCHAR(50),
+order_name VARCHAR(50),
+order_phone VARCHAR(60),
+order_date TIMESTAMP DEFAULT NOW(),
+order_price INT,
+FOREIGN KEY(user_id) REFERENCES tb_user(user_id)  ON DELETE CASCADE
+);
+​
+CREATE TABLE tb_product(
+product_id VARCHAR(50) PRIMARY KEY,
+product_title VARCHAR(100),
+product_price INT,
+gender CHAR,
+category VARCHAR(50)
+);
+​
+​
+CREATE TABLE tb_product_detail(
+product_detail_id INT AUTO_INCREMENT PRIMARY KEY,
+product_id VARCHAR(50),
+product_color VARCHAR(30),
+product_size VARCHAR(30),
+product_stock INT,
+FOREIGN KEY(product_id) REFERENCES tb_product(product_id)  ON DELETE CASCADE
+);
+​
+​
+CREATE TABLE tb_order_detail(
+order_id VARCHAR(60),
+product_id VARCHAR(50),
+product_detail_id INT,
+amount INT,
+FOREIGN KEY(order_id) REFERENCES tb_order(order_id)  ON DELETE CASCADE,
+FOREIGN KEY(product_id) REFERENCES tb_product(product_id)  ON DELETE CASCADE,
+FOREIGN KEY(product_detail_id) REFERENCES tb_product_detail(product_detail_id)  ON DELETE CASCADE
+);
+​
+​
+CREATE TABLE tb_cart(
+cart_id INT AUTO_INCREMENT PRIMARY KEY,
+user_id VARCHAR(60),
+product_id VARCHAR(50),
+product_detail_id INT,
+product_amount INT,
+FOREIGN KEY(user_id) REFERENCES tb_user(user_id)  ON DELETE CASCADE,
+FOREIGN KEY(product_id) REFERENCES tb_product(product_id)  ON DELETE CASCADE,
+FOREIGN KEY(product_detail_id) REFERENCES tb_product_detail(product_detail_id)  ON DELETE CASCADE
+);
