@@ -1,5 +1,10 @@
 # COSMOS_ver2.0# COSMOS-ver2.0
 
+ERD 
+https://app.sqldbm.com/#  
+아이디 ging35@naver.com
+
+
 api명세서 작성
 
 Wiki 확인
