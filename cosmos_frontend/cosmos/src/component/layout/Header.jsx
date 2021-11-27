@@ -7,7 +7,9 @@ function Header() {
     return ( 
         <header className='header'> 
             <div className="header_left">
-                <div className="cosmos_icon"></div>
+                <a href="/">
+                    <div className="cosmos_icon" ></div>
+                </a>
                 <ul className="nav">
                     <li>New Arrivals</li>
                     <li>Women</li>
@@ -19,7 +21,7 @@ function Header() {
             <div className="header_right">
                 <div>검색</div>
                 <div>배송국가</div>
-                <a href="/signIn">로그인</a>
+                <a href="/signin">로그인</a>
             </div>
         </header> 
     ); 

@@ -1,6 +1,8 @@
 import React from 'react'; 
+import { Link } from "react-router-dom";
 
 import '../style/view/signin.scss'
+import '../style/comm.scss';
 
 function signin() { 
     
@@ -8,7 +10,7 @@ function signin() {
         <div>
             <div className="top_content">
                 <h1>로그인</h1>
-                <span>회원가입</span>
+                <Link to="/signup">회원가입</Link>
             </div>
             <div className="middle_content">
                 <div className="input_box">

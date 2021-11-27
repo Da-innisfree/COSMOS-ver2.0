@@ -1,4 +1,5 @@
 import React from 'react'; 
+import { Link } from "react-router-dom";
 
 import '../style/view/productlist.scss'
 import '../style/comm.scss'
@@ -23,16 +24,19 @@ function PeoducctList() {
                     
                 </div>
                 <div className="product_list_wrap">
-                    <div className="product">
-                        <div className="img"></div>
-                        <div className="content">
-                            <label className="product_title">상품명 test</label>
-                            <label className="product_price">가격 3자리 , </label>
-                            <ul>
-                                <li>색상</li>
-                            </ul>
+                        <div className="product">
+                            <Link to="/product">
+                                <div className="img"></div>
+                                <div className="content">
+                                    <label className="product_title">상품명 test</label>
+                                    <label className="product_price">가격 3자리 , </label>
+                                    <ul>
+                                        <li>색상</li>
+                                    </ul>
+                                </div>
+                            </Link>
                         </div>
-                    </div>
+                    
                     <div className="product">
                         <div className="img"></div>
                         <div className="content">
