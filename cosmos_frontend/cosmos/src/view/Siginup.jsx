@@ -1,5 +1,6 @@
 import React from "react";
 import { Component } from "react";
+import Authapi from '../apis/Auth.js';
 
 import '../style/comm.scss';
 import '../style/view/signup.scss';
@@ -98,18 +99,16 @@ class signup extends Component  {
     handleSubmit(event) {
         console.log(this.state)
         // console.log(this.state.idCheck)
+
         event.preventDefault();
+
+        Authapi.signUp(this.state).then(res => {
+            console.log('????')
+        })
+        .catch(err => {
+            console.log(err);
+        });
     }
-
-    // stateInput(e) {
-    //     this.setState({
-    //         name: e.target.value
-    //     })
-    // }
-
-    // submit() {
-    //     console.log(this.state);
-    // }
     
     render() {
         return (
