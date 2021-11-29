@@ -1,5 +1,8 @@
 package com.shopping.cosmos.domain;
 
+
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -10,6 +13,9 @@ public class ProductVO {
 	private String title;
 	private char gender;
 	private String category;
-	
+	private List<ProductDetailVO> proDetails;
+	private String description;
+	private String details;
+	private List<String> images;
 	
 }

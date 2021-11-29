@@ -18,6 +18,9 @@ user_id VARCHAR(60),
 address VARCHAR(100),
 address_detail VARCHAR(100),
 postcode VARCHAR(50),
+name VARCHAR(50),
+phone VARCHAR(60),
+reg_date TIMESTAMP DEFAULT NOW()
 FOREIGN KEY(user_id) REFERENCES tb_user(user_id)  ON DELETE CASCADE
 );
 ​
@@ -38,8 +41,11 @@ CREATE TABLE tb_product(
 product_id VARCHAR(50) PRIMARY KEY,
 product_title VARCHAR(100),
 product_price INT,
+description VARCHAR(200),
+details VARCHAR(200),
 gender CHAR,
-category VARCHAR(50)
+category VARCHAR(50),
+reg_date TIMESTAMP DEFAULT NOW()
 );
 ​
 ​
