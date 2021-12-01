@@ -11,11 +11,26 @@ function Header() {
                     <div className="cosmos_icon" ></div>
                 </a>
                 <ul className="nav">
-                    <li>New Arrivals</li>
-                    <li>Women</li>
-                    <li>Men</li>
-                    <li>Magazine</li>
-                    <li>Sustainability</li>
+                    <li className="nav_item">
+                        <div className="nav_item_name">New Arrivals</div>
+                        <div className="nav_item_contents"></div>
+                    </li>
+                    <li className="nav_item">
+                        <div className="nav_item_name">Women</div>
+                        <div className="nav_item_contents"></div>
+                    </li>
+                    <li className="nav_item">
+                        <div className="nav_item_name">Men</div>
+                        <div className="nav_item_contents"></div>
+                    </li>
+                    <li className="nav_item">
+                        <div className="nav_item_name">Magazine</div>
+                        <div className="nav_item_contents"></div>
+                    </li>
+                    <li className="nav_item">
+                        <div className="nav_item_name">Sustainability</div>
+                        <div className="nav_item_contents"></div>
+                    </li>
                 </ul>
             </div>
             <div className="header_right">

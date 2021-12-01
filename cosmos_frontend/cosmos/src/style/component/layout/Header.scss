@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: space-between;
     position: fixed;
-    padding: 0 200px;
+    padding: 0 8vw;
     box-sizing: border-box;
     background-color: orange;
     z-index: 9999999;
@@ -21,6 +21,23 @@
         .nav {
             display: flex;
             gap: 10px;
+            .nav_item{
+                .nav_item_contents {
+                    position: fixed;
+                    top: 60px;
+                    left: 0;
+                    right: 0;
+                    height: 0;
+                    transition: .5s;
+                }
+                &:hover .nav_item_contents {
+                    width: 100vw;
+                    height: 500px;
+                    background-color: red;
+                    transition: .5s;
+                }
+            }
+            
     
         }
     }

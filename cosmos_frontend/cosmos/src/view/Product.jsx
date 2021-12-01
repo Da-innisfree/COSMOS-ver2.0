@@ -9,9 +9,11 @@ function product() {
         <div className="product_warp">
             <div className="porduct_left">
                 <div className="sub_image_area">
-                    <div className="sub_img">서브사진</div>
-                    <div className="sub_img">서브사진</div>
-                    <div className="sub_img">서브사진</div>
+                    <div className="sub_wrap">
+                        <div className="sub_img">서브사진</div>
+                        <div className="sub_img">서브사진</div>
+                        <div className="sub_img">서브사진</div>
+                    </div>
                 </div>
                 <div className="main_image_area">
                     <div className="main_img">메인사진</div>
