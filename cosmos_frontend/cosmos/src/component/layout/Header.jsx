@@ -10,26 +10,76 @@ function Header() {
                 <a href="/">
                     <div className="cosmos_icon" ></div>
                 </a>
-                <ul className="nav">
-                    <li className="nav_item">
-                        <div className="nav_item_name">New Arrivals</div>
-                        <div className="nav_item_contents"></div>
+                <ul className="main_menu">
+                    <li className="item">
+                        <div className="item_name">New Arrivals</div>
+                        <div className="item_contents">
+                            <div className="content_menu">
+                                <ul>
+                                    <li>Women: New Arrivals</li>
+                                    <li>Women: New</li>
+                                    <li>Accessories</li>
+                                    <li>Men: New Arrivals</li>
+                                    <li>Men: New</li>
+                                    <li>Accessories</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div className="content_text">
+
+                        </div>
                     </li>
-                    <li className="nav_item">
-                        <div className="nav_item_name">Women</div>
-                        <div className="nav_item_contents"></div>
+                    <li className="item">
+                        <div className="item_name">Women</div>
+                        <div className="item_contents">
+                            <div className="content_menu">
+                                <ul>
+                                    <li>New Arrivals</li>
+                                    <li>니트웨어</li>
+                                    <li>가디건</li>
+                                    <li>캐시미어</li>
+                                    <li>아우터웨어</li>
+                                    <li>드레스</li>
+                                    <li>트라우저</li>
+                                    <li>진</li>
+                                    <li>셔츠</li>
+                                    <li>탑</li>
+                                    <li>티셔츠</li>
+                                    <li>스커트</li>
+                                    <li>라운지웨어</li>
+                                    <li>기프트 컬렉션</li>
+                                </ul>
+                                <ul>
+                                    <li>New Accessories</li>
+                                    <li>슈즈</li>
+                                    <li>가방  지갑</li>
+                                    <li>모자, 스카프 장갑</li>
+                                    <li>주얼리</li>
+                                    <li>언더웨어</li>
+                                    <li>양말</li>
+                                    <li>스임웨어</li>
+                                </ul>
+                                <ul>
+                                    <li>Teddy Collection</li>
+                                    <li>Online Exclusive</li>
+                                    <li>Most Popular</li>
+                                    <li>COSMOS by you</li>
+                                    <li>View All</li>
+                                </ul>
+                            </div>
+                        </div>
                     </li>
-                    <li className="nav_item">
-                        <div className="nav_item_name">Men</div>
-                        <div className="nav_item_contents"></div>
+                    <li className="item">
+                        <div className="item_name">Men</div>
+                        <div className="item_contents"></div>
                     </li>
-                    <li className="nav_item">
-                        <div className="nav_item_name">Magazine</div>
-                        <div className="nav_item_contents"></div>
+                    <li className="item">
+                        <div className="item_name">Magazine</div>
+                        <div className="item_contents"></div>
                     </li>
-                    <li className="nav_item">
-                        <div className="nav_item_name">Sustainability</div>
-                        <div className="nav_item_contents"></div>
+                    <li className="item">
+                        <div className="item_name">Sustainability</div>
+                        <div className="item_contents"></div>
                     </li>
                 </ul>
             </div>

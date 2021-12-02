@@ -18,27 +18,30 @@
             width: 123px;
             height: 20px;
         }
-        .nav {
+        .main_menu {
             display: flex;
             gap: 10px;
-            .nav_item{
-                .nav_item_contents {
+            .item {
+                .item_name {
+                    color: #fff;
+                }
+
+                .item_contents {
+                    width: 100%;
                     position: fixed;
                     top: 60px;
                     left: 0;
-                    right: 0;
-                    height: 0;
-                    transition: .5s;
+                    display: none;
+                    .content_menu{
+                        display: flex;
+                    }
                 }
-                &:hover .nav_item_contents {
-                    width: 100vw;
-                    height: 500px;
-                    background-color: red;
-                    transition: .5s;
+
+                &:hover .item_contents {
+                    display: flex;
                 }
             }
             
-    
         }
     }
 
