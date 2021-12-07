@@ -102,8 +102,15 @@ class signup extends Component  {
 
         event.preventDefault();
 
-        Authapi.signUp(this.state).then(res => {
-            console.log('????')
+        // Authapi.signUp(this.state).then(res => {
+        //     console.log('????')
+        // })
+        // .catch(err => {
+        //     console.log(err);
+        // });
+        
+        Authapi.signUp().then(res => {
+            console.log(res.data)
         })
         .catch(err => {
             console.log(err);

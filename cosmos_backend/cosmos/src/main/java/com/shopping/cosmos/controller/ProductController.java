@@ -6,20 +6,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ProductController {
 	
-	@GetMapping("/product/${id}")
-	void productList() {
-		
-	}
-	
-	@GetMapping("/${gender}/${id}")
-	void productDetail() {
-		
-	}
-	
-	@GetMapping("/cart/${userID}")
-	void cartPage() {
-		
-	}
+//	@GetMapping("/product/${id}")
+//	void productList() {
+//		
+//	}
+//	
+//	@GetMapping("/${gender}/${id}")
+//	void productDetail() {
+//		
+//	}
+//	
+//	@GetMapping("/cart/${userID}")
+//	void cartPage() {
+//		
+//	}
 	
 	
 
