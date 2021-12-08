@@ -11,6 +11,7 @@ function signin() {
             <div className="top_content">
                 <h1>로그인</h1>
                 {/* <Link to="/signup">회원가입</Link> */}
+                <a href="/signup">회원가입</a>
             </div>
             <div className="middle_content">
                 <div className="input_box">
