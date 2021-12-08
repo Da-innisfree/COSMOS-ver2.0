@@ -10,7 +10,7 @@ function signin() {
         <div>
             <div className="top_content">
                 <h1>로그인</h1>
-                <Link to="/signup">회원가입</Link>
+                {/* <Link to="/signup">회원가입</Link> */}
             </div>
             <div className="middle_content">
                 <div className="input_box">

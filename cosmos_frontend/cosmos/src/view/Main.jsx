@@ -1,6 +1,7 @@
 import React from 'react'; 
 import { Link } from "react-router-dom";
 
+
 import '../style/comm.scss'
 import '../style/view/main.scss'
 
