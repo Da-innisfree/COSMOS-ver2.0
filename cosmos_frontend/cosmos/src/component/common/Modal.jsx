@@ -9,12 +9,15 @@ function Modal(props) {
     const { open, close } = props;
 
     return (
+      // <div className={ open ? 'modal active' : 'modal'} onClick={close}>
       <div className={ open ? 'modal active' : 'modal'}>
         <div className="modal_main">
+          <div className="modal_head">
             <button onClick={close}>close</button>
-            <div>
-                <SignIn/>
-            </div>
+          </div>
+          <div className="modal_body">
+              <SignIn/>
+          </div>
         </div>
       </div>
     );
