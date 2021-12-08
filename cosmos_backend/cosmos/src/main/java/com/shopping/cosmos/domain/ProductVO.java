@@ -8,11 +8,9 @@ import lombok.Data;
 @Data
 public class ProductVO {
 
-
 	private int id;
 	private String title;
-	private char gender;
-	private String category;
+	private List<CategoryVO> category;
 	private List<ProductDetailVO> proDetails;
 	private String description;
 	private String details;
