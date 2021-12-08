@@ -3,7 +3,7 @@
 ERD 
 https://app.sqldbm.com/#  
 아이디 ging35@naver.com
-
+Rim200135!
 
 api명세서 작성
 
