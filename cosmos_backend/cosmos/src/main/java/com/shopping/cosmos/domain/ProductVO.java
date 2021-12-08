@@ -10,7 +10,7 @@ public class ProductVO {
 
 	private int id;
 	private String title;
-	private List<CategoryVO> category;
+	private CategoryVO category;
 	private List<ProductDetailVO> proDetails;
 	private String description;
 	private String details;
