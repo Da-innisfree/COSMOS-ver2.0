@@ -9,6 +9,10 @@ class AuthApi {
         return axios.get(PRODUCT_API_BASE_URL+'/signup');
     }
 
+    signIn(user){
+        return axios.post(PRODUCT_API_BASE_URL+'/signin', user);
+    }
+
 }
 
 export default new AuthApi();
