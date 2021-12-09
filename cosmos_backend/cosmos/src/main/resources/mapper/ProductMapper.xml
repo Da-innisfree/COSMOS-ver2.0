@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTDMapper3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.cosmos.mapper.ProductMapper">
+
+<select id="readProductList" resultType="com.shopping.cosmos.vo.ProductVO">
+
+</select>
+
+<select id="readProduct" resultType="com.shopping.cosmos.vo.ProductVO">
+select pro.product_id  from tb_product pro LEFT OUTER JOIN tb_product_detail detail on pro.product_id = detail.product_id where pro.product_id = #{id}  
+</select>
+
+<resultMap type="com.shopping.cosmos.vo.ProductVO" id="productMap">
+<result column="product_id" property="id"/>
+<result column="product_title" property="title"/>
+<result column="product_price" property="price"/>
+<result column="description" property="description"/>
+<result column="details" property="details"/>
+<result column="reg_date" property="regDate"/>
+<collection property="proDetails" resultMap="detailMap"/>
+</resultMap>
+<resultMap type="com.shopping.cosmos.vo.ProductDetailVO" id="detailMap">
+<result column="product_detail_id" property="id"/>
+<result column="product_color" property="color"/>
+<result column="product_size" property="size"/>
+<result column="product_stock" property="stock"/>
+</resultMap>
+
+
+</mapper>
