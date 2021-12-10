@@ -4,14 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.shopping.cosmos.mapper.ProductMapper">
 
-<select id="readProductList" resultType="com.shopping.cosmos.vo.ProductVO">
-
-</select>
-
-<select id="readProduct" resultType="com.shopping.cosmos.vo.ProductVO">
-select pro.product_id  from tb_product pro LEFT OUTER JOIN tb_product_detail detail on pro.product_id = detail.product_id where pro.product_id = #{id}  
-</select>
-
 <resultMap type="com.shopping.cosmos.vo.ProductVO" id="productMap">
 <result column="product_id" property="id"/>
 <result column="product_title" property="title"/>
@@ -19,8 +11,10 @@ select pro.product_id  from tb_product pro LEFT OUTER JOIN tb_product_detail det
 <result column="description" property="description"/>
 <result column="details" property="details"/>
 <result column="reg_date" property="regDate"/>
+<collection property="category" resultMap="categoryMap"/>
 <collection property="proDetails" resultMap="detailMap"/>
 </resultMap>
+
 <resultMap type="com.shopping.cosmos.vo.ProductDetailVO" id="detailMap">
 <result column="product_detail_id" property="id"/>
 <result column="product_color" property="color"/>
@@ -28,5 +22,25 @@ select pro.product_id  from tb_product pro LEFT OUTER JOIN tb_product_detail det
 <result column="product_stock" property="stock"/>
 </resultMap>
 
+<resultMap type="com.shopping.cosmos.vo.CategoryVO" id="categoryMap">
+<result column="category_id" property="id"/>
+<result column="gender" property="gender"/>
+<result column="category" property="category"/>
+<result column="category_detail" property="categoryDetail"/>
+</resultMap>
+
+<select id="readProductList" resultType="list">
+SELECT *
+FROM tb_product pro 
+LEFT OUTER JOIN tb_product_detail detail on pro.product_id = detail.product_id 
+LEFT OUTER JOIN tb_category cat on pro.category_id = cat.category_id
+WHERE pro.product_id = #{id}  
+</select>
+
+<select id="readProduct" resultMap="productMap">
+select *
+from tb_product pro LEFT OUTER JOIN tb_product_detail detail 
+on pro.product_id = detail.product_id where pro.product_id = #{id}  
+</select>
 
 </mapper>
