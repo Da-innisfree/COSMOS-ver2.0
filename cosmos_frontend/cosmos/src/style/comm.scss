@@ -22,9 +22,33 @@
             color: #fff;
         }   
     }
+
+    &.full {
+        background-color: #000000;
+        color: #ffffff;
+        width: 100%;
+    }
 }
 
 .input_box {
     display: flex;
     flex-direction: column;
+    gap: .5em;
+    > label {
+        font-size: 10pt;
+        color: #646464;
+    }
+
+    > input {
+        background-color: #d8d8d8;
+        outline: 0;
+        border: 0;
+        height: 30px;
+        box-sizing: border-box;
+        padding: 5px;
+        font-size: 10pt;
+        &:focus {
+            border-bottom: 2px solid #000;
+        }
+    }
 }

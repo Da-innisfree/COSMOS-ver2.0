@@ -14,11 +14,12 @@
         background-color: rgba($color: #ffffff, $alpha: .8);
     }
     .modal_main {
-        width: 25%;
-        text-align: center;
+        // width: 25%;
+        width: 350px;
+        // text-align: center;
         background: #ffffff;
         font-size: 20px;
-        border: 1px solid #000000;
+        border: 1px solid #b9b8b8;
         color: white;
         height: 500px;
         .modal_head {
@@ -28,7 +29,7 @@
         }
 
         .modal_body {
-            padding: .5em;
+            padding: 1em 2em;
         }
     }
 }

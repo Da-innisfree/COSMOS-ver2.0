@@ -47,7 +47,7 @@ function product() {
                             </div>
                         </div>
                         
-                        <div className="btn">
+                        <div className="btn full">
                             장바구니
                         </div>
                     </div>

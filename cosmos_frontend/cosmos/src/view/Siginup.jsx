@@ -12,7 +12,7 @@ function WarningBanner(props) {
   
     return (
       <div className="warning">
-        Warning!
+        비밀번호가 일치 하지 않습니다.
       </div>
     );
 }

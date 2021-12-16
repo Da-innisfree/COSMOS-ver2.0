@@ -58,7 +58,7 @@ function Signin() {
                     <input type="password" name='password' value={user.password} onChange={handleInput}  />
                 </div>  
                 <div className="btn_area">
-                    <button onClick={login}>로그인</button>
+                    <div className='btn full' onClick={login}>로그인</div>
                 </div>
                 <div>
                     <span>아이디 찾기</span>
