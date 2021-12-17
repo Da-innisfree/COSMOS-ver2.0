@@ -31,7 +31,7 @@ function Signin() {
         if(user.id && user.password){
             console.log('login', user);
             Authapi.signIn(user).then(res => {
-                console.log(res.data);
+                console.log(res);
                 localStorage.setItem('token', res.data);
             }).catch(err => {
                 console.log(err);

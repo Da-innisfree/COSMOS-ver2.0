@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -28,17 +29,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-//		http.authorizeRequests().antMatchers("/**").permitAll();
-		
-//		http.formLogin().loginPage(null)
-		
+
 		http.cors().configurationSource(corsConfigurationSource())
 		.and()
 		.csrf().disable()
-		.authorizeRequests().antMatchers("/**").permitAll()
+		.authorizeRequests()
+//		.antMatchers("/**").permitAll()
+		.anyRequest().permitAll()    //.authenticated() 
 		.and()
-		.sessionManagement()
+		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) //토큰활용 세션 비활성
 		.and()
+		.formLogin().disable() //form기반 로그인 비활성
 		.addFilterBefore(this.jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 	

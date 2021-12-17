@@ -37,7 +37,7 @@ public class AuthController {
 			
 			String tk = jwtUtile.generateToken(user.getId());
 			
-			System.out.println(tk);
+			System.out.println("로그인 jwt 토큰 발행 : " + tk);
 			
 			return tk;
 		}

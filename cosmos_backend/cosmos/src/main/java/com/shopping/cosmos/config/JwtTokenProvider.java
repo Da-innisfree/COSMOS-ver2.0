@@ -49,6 +49,7 @@ public class JwtTokenProvider {
 			
 			System.out.println();
 			System.out.println("jwtparser : " + claims.getBody().getSubject());
+			System.out.println();
 			
 			return claims.getBody().getSubject();
 		}catch (JwtException ex) {
