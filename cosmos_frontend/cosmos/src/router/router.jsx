@@ -5,7 +5,8 @@ import Main from '../view/Main.jsx';
 import List from '../view/ProductList.jsx';
 import Product from '../view/Product.jsx'
 import SignIn from '../view/SignIn.jsx';
-import SignUp from '../view/Siginup.jsx'
+import SignUp from '../view/Siginup.jsx';
+import MyPage from '../view/MyPage.jsx';
 
 const AppRouter = () => {
     return(
@@ -16,6 +17,7 @@ const AppRouter = () => {
                     <Route path="/product" element={<Product/>} />
                     <Route path="/signin" element={<SignIn/>} />
                     <Route path="/signup" element={<SignUp/>} />
+                    <Route path="/mypage" element={<MyPage/>} />
                 </Routes>
         </BrowserRouter>
     );

@@ -150,6 +150,7 @@ function Header() {
                 <div>검색</div>
                 <div>배송국가</div>
                 {/* <a href="/signin">로그인</a> */}
+                <a href='/mypage'>마이 페이지</a>
                 <button onClick={openModal}>로그인</button>
                 <Modal open={modalOpen} close={closeModal}/>
             </div>
