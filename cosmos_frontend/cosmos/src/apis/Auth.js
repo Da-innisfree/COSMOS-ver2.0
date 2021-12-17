@@ -1,4 +1,6 @@
-import axios from "axios";
+//import axios from "axios";
+import service from "../service/request.js"
+
 const PRODUCT_API_BASE_URL = "http://localhost:8080";
 
 class AuthApi {
@@ -6,11 +8,11 @@ class AuthApi {
     //     return axios.post(PRODUCT_API_BASE_URL+'/signup', user);
     // }
     signUp(){
-        return axios.get(PRODUCT_API_BASE_URL+'/signup');
+        return service.get(PRODUCT_API_BASE_URL+'/signup');
     }
 
     signIn(user){
-        return axios.post(PRODUCT_API_BASE_URL+'/signin', user);
+        return service.post(PRODUCT_API_BASE_URL+'/signin', user);
     }
 
 }

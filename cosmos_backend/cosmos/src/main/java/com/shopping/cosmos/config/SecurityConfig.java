@@ -30,7 +30,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.cors().configurationSource(corsConfigurationSource())
 		.and()
 		.csrf().disable()
-		.authorizeRequests().antMatchers("/**").permitAll();
+		.authorizeRequests().antMatchers("/**").permitAll()
+		.and()
+		.sessionManagement();
 	}
 	
 	@Bean

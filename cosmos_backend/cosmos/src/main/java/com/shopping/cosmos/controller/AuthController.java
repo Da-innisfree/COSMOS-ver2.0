@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.shopping.cosmos.config.JwtTokenProvider;
 import com.shopping.cosmos.domain.LoginRequest;
 import com.shopping.cosmos.domain.LoginRespones;
 import com.shopping.cosmos.domain.UserVO;
@@ -17,16 +18,10 @@ import com.shopping.cosmos.domain.UserVO;
 @RestController
 public class AuthController {
 
-//	@PostMapping("/signup")
-//	void signup(@RequestBody UserVO user) {
-	@GetMapping("/signup")
-	String signup() {
-		System.out.println("????");
-		return "나와라";
-	}
-	
+	private final JwtTokenProvider jwtUtile = new JwtTokenProvider();
+
 	@PostMapping("/signin")
-	public LoginRespones signin(@RequestBody LoginRequest user) {
+	public String signin(@RequestBody LoginRequest user) {
 		String id = "test";
 		String pass = "test";
 		
@@ -36,15 +31,20 @@ public class AuthController {
 		System.out.println(user.getId() + "     " + user.getPassword());
 		System.out.println(id + "     " + pass);
 		
-		if(id == user.getId() && pass == user.getPassword()) {
+		if(id.equals(user.getId()) && pass.equals(user.getPassword())) {
 			System.out.println("??????");
 			token.setToken("token");
-			return token;
+			
+			String tk = jwtUtile.generateToken(user.getId());
+			
+			System.out.println(tk);
+			
+			return tk;
 		}
 		else {
 			System.out.println("아니라고???");
 			token.setToken("토근 아니야");
-			return token;			
+			return "tets";			
 		}
 	}
 }

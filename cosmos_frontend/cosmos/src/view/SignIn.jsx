@@ -32,6 +32,7 @@ function Signin() {
             console.log('login', user);
             Authapi.signIn(user).then(res => {
                 console.log(res.data);
+                localStorage.setItem('token', res.data);
             }).catch(err => {
                 console.log(err);
             })
