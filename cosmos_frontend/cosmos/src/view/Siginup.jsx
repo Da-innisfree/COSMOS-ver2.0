@@ -154,6 +154,8 @@ class signup extends Component  {
                        회원가입
                    </div>
                 </div>
+
+                
             </div>
         );
     }

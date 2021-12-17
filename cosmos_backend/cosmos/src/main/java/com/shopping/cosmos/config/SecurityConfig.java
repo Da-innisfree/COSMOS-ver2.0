@@ -3,12 +3,14 @@ package com.shopping.cosmos.config;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -21,6 +23,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected static final List<String> ALLOWED_HEADERS = Arrays.asList(new String[] { "Authorization", "x-auth-token","X-Requested-With", "Content-Type", "Content-Length", "Cache-Control", "Accept", "Origin" });
 //	protected static final List<String> ALLOWED_HEADERS = Arrays.asList(new String[] { "*" });
 	
+	@Autowired
+	private JwtAuthenticationFilter jwtAuthenticationFilter;
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 //		http.authorizeRequests().antMatchers("/**").permitAll();
@@ -32,7 +37,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.csrf().disable()
 		.authorizeRequests().antMatchers("/**").permitAll()
 		.and()
-		.sessionManagement();
+		.sessionManagement()
+		.and()
+		.addFilterBefore(this.jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 	
 	@Bean

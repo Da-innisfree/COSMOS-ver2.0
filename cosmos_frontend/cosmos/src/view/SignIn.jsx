@@ -41,6 +41,14 @@ function Signin() {
             console.log('아니야')
         }
     }
+
+    const gettest = () => {
+        Authapi.test().then(res => {
+            console.log(res.data);
+        }).catch(err => {
+            console.log(err);
+        })
+    }
     
     return (
         <div>
@@ -67,7 +75,9 @@ function Signin() {
                 </div>
             </div>
             <div className="bottom_content">
-
+                <div className="btn" onClick={gettest}>
+                    gettest
+                </div>
             </div>
         </div>   
     );

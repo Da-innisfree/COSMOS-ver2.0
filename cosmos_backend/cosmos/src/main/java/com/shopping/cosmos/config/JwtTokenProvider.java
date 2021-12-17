@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.crypto.SecretKey;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Encoders;
@@ -27,7 +29,7 @@ public class JwtTokenProvider {
 	public static String generateToken(String id) {
 		
 		return Jwts.builder()
-				.setId(id)
+				.setSubject(id)
 				.setIssuedAt(new Date(System.currentTimeMillis()))  //토큰 시작시간
 				.setExpiration(new Date(System.currentTimeMillis() + JWT_EXPIRATION_MS))  //만료시간
 				.signWith(key)  //서명 키
@@ -36,22 +38,25 @@ public class JwtTokenProvider {
 	}
 	
 	//토근 아이디 추출
-//	public static String getUserIdFromJWT(String token) {
-//		Claims claims = Jwts.parser()
-//				.setSigningKey(key)
-//				.parseClaimsJws(token)
-//				.getBody();
-//		String passid = Jwts.parserBuild
-				
-//				.setSigningKey(key)
-//				.parseClaimsJws(token)
-//				.getBody()
-//				.getId();
+	public static String getUserIdFromJWT(String token) {
+		Jws<Claims> claims;
 		
-//		return claims.getSubject();
-//		return passid;
+		try {
+			claims = Jwts.parserBuilder()
+					.setSigningKey(key)
+					.build()
+					.parseClaimsJws(token);
+			
+			System.out.println();
+			System.out.println("jwtparser : " + claims.getBody().getSubject());
+			
+			return claims.getBody().getSubject();
+		}catch (JwtException ex) {
+			
+		}
 		
-//	}
+		return "";
+	}
 	
 	//토큰 유효성 검사
 	public static boolean validateToken(String token) {
