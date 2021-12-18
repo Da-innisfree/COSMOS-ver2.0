@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shopping.cosmos.config.JwtTokenProvider;
-import com.shopping.cosmos.domain.LoginRequest;
-import com.shopping.cosmos.domain.LoginRespones;
-import com.shopping.cosmos.domain.UserVO;
+import com.shopping.cosmos.vo.LoginRequest;
+import com.shopping.cosmos.vo.LoginRespones;
+import com.shopping.cosmos.vo.UserVO;
 
 
 @RestController

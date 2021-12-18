@@ -1,4 +1,4 @@
-package com.shopping.cosmos.domain;
+package com.shopping.cosmos.vo;
 
 public class LoginRequest {
 	private String id;

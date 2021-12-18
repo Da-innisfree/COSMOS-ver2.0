@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.shopping.cosmos.domain.ProductVO;
+import com.shopping.cosmos.vo.ProductVO;
 
 @Mapper
 public interface ProductMapper {
