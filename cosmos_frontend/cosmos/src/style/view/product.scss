@@ -63,6 +63,20 @@
             // background-color: darkgreen;
             display: flex;
             flex-direction: column;
+            > .porduct_info_title {
+                h1 {
+                    margin: 0;
+                    font-size: 15pt;
+                    font-weight: 600;
+                }
+            }
+
+            > .product_input_area {
+                margin: 2em 0;
+                display: flex;
+                flex-direction: column;
+                gap: 1em;
+            }
         }
     }
 }

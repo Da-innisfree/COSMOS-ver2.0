@@ -7,6 +7,23 @@
 
 }
 
+//radio
+input[type='radio']{
+    display: none;
+    &:checked + .radio_label{
+        border-bottom: 2px solid black ;
+    }
+}
+
+.radio_label {
+    width: 35px;
+    height: 35px;
+    border: 1px solid gray;
+    text-align: center;
+    line-height: 35px;
+    font-weight: 600;
+}
+
 .btn {
     width: 150px;
     height: 40px;

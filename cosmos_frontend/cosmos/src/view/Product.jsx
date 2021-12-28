@@ -40,15 +40,15 @@ function product() {
                         <div className="input_box">
                             <label>SIZE</label>
                             <div className="btn_area">
-                                <input type="radio" /><label>s</label>
-                                <input type="radio" /><label>m</label>
-                                <input type="radio" /><label>l</label>
-                                <input type="radio" /><label>xl</label>
+                                <input type="radio" /><label className='radio_label'>S</label>
+                                <input type="radio" /><label className='radio_label'>M</label>
+                                <input type="radio" /><label className='radio_label'>L</label>
+                                <input type="radio" /><label className='radio_label'>XL</label>
                             </div>
                         </div>
                         
                         <div className="btn full">
-                            장바구니
+                            장바구니 담기
                         </div>
                     </div>
                     <div className="product_info_sub">
