@@ -4,18 +4,38 @@ import { Link } from "react-router-dom";
 import '../style/view/productlist.scss'
 import '../style/comm.scss'
 
+import testdata from '../assets/testdata/category_detail.json'
+
+function CategoryRadio(props) {
+    if(!props.value){
+        return
+    }
+    else {
+        return (
+            <div>
+                <input type='radio' name='category' id={props.value}/><label for={props.value} className='radio_label category'>{props.value}</label>
+            </div>
+        )
+    }
+}
+
+
 function PeoducctList() { 
-    
+    const data = testdata
+    console.log('testdata.............',data.category_detail);
+
     return ( 
         <div> 
             <div className="product_list_top">
                 <div className="choice_content">
                     <h1 className="product_title">상풍 품목</h1>
                     <div className="btn_area">
-                        <div className="btn reversal"></div>
-                        <div className="btn reversal"></div>
-                        <div className="btn reversal"></div>
-                        <div className="btn reversal"></div>
+                        <div>
+                            <input type='radio' name='category' id='all'/><label for="all" className='radio_label category'>모두보기</label>
+                        </div>
+                        { data.category_detail.map((detail, index) => {
+                            return <CategoryRadio key={index} value={detail}/>
+                        })}
                     </div>
                 </div>
             </div>
