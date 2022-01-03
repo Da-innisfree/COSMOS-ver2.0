@@ -14,6 +14,10 @@ class AuthApi {
         return service.post('/signin', user);
     }
 
+    signUp(user) {
+        return service.post('/signup', user);
+    }
+
 }
 
 export default new AuthApi();

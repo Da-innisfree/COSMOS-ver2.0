@@ -99,17 +99,12 @@ class signup extends Component  {
     handleSubmit(event) {
         console.log(this.state)
         // console.log(this.state.idCheck)
+        delete this.state.idCheck
+        delete this.state.passwordCheck
 
         event.preventDefault();
 
-        // Authapi.signUp(this.state).then(res => {
-        //     console.log('????')
-        // })
-        // .catch(err => {
-        //     console.log(err);
-        // });
-        
-        Authapi.signUp().then(res => {
+        Authapi.signUp(this.state).then(res => {
             console.log(res.data)
         })
         .catch(err => {
