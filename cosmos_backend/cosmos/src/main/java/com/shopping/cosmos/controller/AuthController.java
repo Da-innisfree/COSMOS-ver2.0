@@ -54,7 +54,7 @@ public class AuthController {
 	//회원가입
 	@PostMapping("/signup")
 	public ResponseEntity<?> signup(@RequestBody UserVO user) {
-		System.out.println("USER : " + user.getId());
+		System.out.println("USER : " + user.getEmail());
 		System.out.println("USER : " + user.getName());
 		System.out.println("USER : " + user.getPassword());
 		System.out.println("USER : " + user.getPhone());
