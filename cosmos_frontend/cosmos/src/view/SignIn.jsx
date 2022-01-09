@@ -9,7 +9,7 @@ import '../style/comm.scss';
 function Signin() { 
 
     const [user, setUser] = useState({
-        id: '',
+        email: '',
         password: '',
     });
 
@@ -28,7 +28,7 @@ function Signin() {
     }
 
     const login = () => {
-        if(user.id && user.password){
+        if(user.email && user.password){
             console.log('login', user);
             Authapi.signIn(user).then(res => {
                 console.log(res);
@@ -60,7 +60,7 @@ function Signin() {
             <div className="middle_content" onChange={onCheckEnter}>
                 <div className="input_box">
                     <label>아이디 또는 이메일</label>
-                    <input type="text" name='id' value={user.id} onChange={handleInput}/>
+                    <input type="text" name='email' value={user.email} onChange={handleInput}/>
                 </div>
                 <div className="input_box">
                     <label>비밀번호</label>

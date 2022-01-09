@@ -26,10 +26,10 @@ public class JwtTokenProvider {
 	private static final int JWT_EXPIRATION_MS = 60480000;
 	
 	//토큰 생성
-	public static String generateToken(String id) {
+	public static String generateToken(String email) {
 		
 		return Jwts.builder()
-				.setSubject(id)
+				.setSubject(email)
 				.setIssuedAt(new Date(System.currentTimeMillis()))  //토큰 시작시간
 				.setExpiration(new Date(System.currentTimeMillis() + JWT_EXPIRATION_MS))  //만료시간
 				.signWith(key)  //서명 키

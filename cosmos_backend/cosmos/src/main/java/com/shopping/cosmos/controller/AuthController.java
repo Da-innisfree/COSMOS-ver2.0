@@ -27,28 +27,14 @@ public class AuthController {
 
 	//로그인
 	@PostMapping("/signin")
-	public String signin(@RequestBody LoginRequest user) {
-		String id1 = "test";
-		String id2 = "testtest";
-		String pass = "test";
+	public String signin(@RequestBody LoginRequest auth) {
 		
+		UserVO user = userService.login(auth.getEmail(), auth.getPassword());
 		
-		LoginRespones token = new LoginRespones();
+		String token = jwtUtile.generateToken(user.getEmail());
 		
-		if(( id1.equals(user.getId()) || id2.equals(user.getId()) ) && pass.equals(user.getPassword())) {
-			token.setToken("token");
-			
-			String tk = jwtUtile.generateToken(user.getId());
-			
-			System.out.println("로그인 jwt 토큰 발행 : " + tk);
-			
-			return tk;
-		}
-		else {
-			System.out.println("아니라고???");
-			token.setToken("토근 아니야");
-			return "tets";			
-		}
+		return token;
+		
 	}
 	
 	//회원가입

@@ -6,4 +6,8 @@
 	 <insert id="insertUser" parameterType="com.shopping.cosmos.vo.UserVO" keyProperty="user_id">
 	 	INSERT INTO tb_user(user_email, user_pw, user_name, user_phone) VALUE(#{email}, #{password}, #{name}, #{phone});
 	 </insert>
+	 
+	 <select id="findByEmail" parameterType="String"  resultType="com.shopping.cosmos.vo.UserVO">
+	 	SELECT user_id as id, user_email as email, user_pw as password, user_name as name, user_phone as phone FROM tb_user WHERE user_email = #{email};
+	 </select>
 </mapper>
