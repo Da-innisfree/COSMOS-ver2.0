@@ -120,7 +120,7 @@ class signup extends Component  {
                         <label>아이디</label>
                         <input type="text" defaultValue={this.state.email} onChange={this.hadndleId}/>
                     </div>
-                    <div>{this.state.emailCheck}</div>
+                    <div className="btn reversal">중복확인</div>
                     <WarningBanner warn={this.state.emailCheck} />
                     <div className="input_box">
                         <label>비밀번호</label>
