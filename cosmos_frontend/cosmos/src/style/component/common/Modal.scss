@@ -21,7 +21,7 @@
         font-size: 20px;
         border: 1px solid #b9b8b8;
         color: white;
-        height: 500px;
+        // height: 500px;
         .modal_head {
             display: flex;
             flex-direction: row-reverse;
@@ -29,7 +29,7 @@
         }
 
         .modal_body {
-            padding: 1em 2em;
+            padding: 1em 1.5em 2.5em;
         }
     }
 }

@@ -2,14 +2,41 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #b9b8b8;;
+    border-bottom: 1px solid #b9b8b8;
+    & h1 {
+        font-size: 16px;
+    }
+    & a {
+        font-size: 16px;
+    }
 }
 
 .middle_content {
     display: flex;
     flex-direction: column;
     gap: 1em;
-    margin: 3em 0;
+    margin: 2em 0;
+
+    .find_id_pw {
+        display: flex;
+        gap: .5em;
+        font-size: 12px;
+        & span {
+            cursor: pointer;
+            border-bottom: 1px solid #000000;
+        }
+    }
+}
+
+.bottom_content {
+    display: flex;
+    flex-direction: column;
+    gap: .5em; 
+    font-size: 12px;
+    color: #1b1b1b;
+    & .btn {
+        width: calc((100% / 2) - 0.75em);
+    }
 }
 
 * {
