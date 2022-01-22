@@ -12,7 +12,7 @@ function WarningBanner(props) {
   
     return (
       <div className="warning">
-        Warning!
+        비밀번호가 일치 하지 않습니다.
       </div>
     );
 }
@@ -22,11 +22,11 @@ class signup extends Component  {
     constructor() {
         super()
         this.state = {
-            id:'',
+            email:'',
             password: '',
             name:'',
             phone:'',
-            idCheck: null,
+            emailCheck: null,
             passwordCheck: null
         };
 
@@ -43,15 +43,15 @@ class signup extends Component  {
         if((/^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/.test(event.target.value))){
             this.setState(
                 {
-                    id: event.target.value,
-                    idCheck: true
+                    email: event.target.value,
+                    emailCheck: true
                 }
             );
         }
         else {
             this.setState(
                 {
-                    idCheck: false
+                    emailCheck: false
                 }
             );
         }
@@ -99,11 +99,13 @@ class signup extends Component  {
     handleSubmit(event) {
         console.log(this.state)
         // console.log(this.state.idCheck)
+        delete this.state.emailCheck
+        delete this.state.passwordCheck
 
         event.preventDefault();
 
         Authapi.signUp(this.state).then(res => {
-            console.log('????')
+            console.log(res.data)
         })
         .catch(err => {
             console.log(err);
@@ -116,10 +118,10 @@ class signup extends Component  {
                 <div className="signup_warp">
                     <div className="input_box">
                         <label>아이디</label>
-                        <input type="text" defaultValue={this.state.id} onChange={this.hadndleId}/>
+                        <input type="text" defaultValue={this.state.email} onChange={this.hadndleId}/>
                     </div>
-                    <div>{this.state.idCheck}</div>
-                    <WarningBanner warn={this.state.idCheck} />
+                    <div className="btn reversal">중복확인</div>
+                    <WarningBanner warn={this.state.emailCheck} />
                     <div className="input_box">
                         <label>비밀번호</label>
                         <input type="text" defaultValue={this.state.password} onChange={this.hadndlePassword}/>
@@ -147,6 +149,8 @@ class signup extends Component  {
                        회원가입
                    </div>
                 </div>
+
+                
             </div>
         );
     }

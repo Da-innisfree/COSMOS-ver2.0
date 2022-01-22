@@ -20,22 +20,11 @@ address_detail VARCHAR(100),
 postcode VARCHAR(50),
 name VARCHAR(50),
 phone VARCHAR(60),
-reg_date TIMESTAMP DEFAULT NOW()
+reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 FOREIGN KEY(user_id) REFERENCES tb_user(user_id)  ON DELETE CASCADE
 );
 ​
-CREATE TABLE tb_order(
-order_id VARCHAR(60) PRIMARY key,
-user_id VARCHAR(100),
-order_addr VARCHAR(100),
-order_addr_detail VARCHAR(100),
-order_addr_postcode VARCHAR(50),
-order_name VARCHAR(50),
-order_phone VARCHAR(60),
-order_date TIMESTAMP DEFAULT NOW(),
-order_price INT,
-FOREIGN KEY(user_id) REFERENCES tb_user(user_id)  ON DELETE CASCADE
-);
+
 ​
 CREATE TABLE tb_product(
 product_id VARCHAR(50) PRIMARY KEY,
@@ -43,9 +32,16 @@ product_title VARCHAR(100),
 product_price INT,
 description VARCHAR(200),
 details VARCHAR(200),
+reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+category_id  INT,
+FOREIGN KEY(category_id) REFERENCES tb_category(category_id )
+);
+
+CREATE TABLE tb_category(
+category_id INT PRIMARY KEY,
 gender CHAR,
-category VARCHAR(50),
-reg_date TIMESTAMP DEFAULT NOW()
+category VARCHAR(100),
+category_detail VARCHAR(100)
 );
 ​
 ​
@@ -58,6 +54,18 @@ product_stock INT,
 FOREIGN KEY(product_id) REFERENCES tb_product(product_id)  ON DELETE CASCADE
 );
 ​
+CREATE TABLE tb_order(
+order_id VARCHAR(60) PRIMARY key,
+user_id VARCHAR(100),
+order_addr VARCHAR(100),
+order_addr_detail VARCHAR(100),
+order_addr_postcode VARCHAR(50),
+order_name VARCHAR(50),
+order_phone VARCHAR(60),
+order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+order_price INT,
+FOREIGN KEY(user_id) REFERENCES tb_user(user_id)  ON DELETE CASCADE
+);
 ​
 CREATE TABLE tb_order_detail(
 order_id VARCHAR(60),

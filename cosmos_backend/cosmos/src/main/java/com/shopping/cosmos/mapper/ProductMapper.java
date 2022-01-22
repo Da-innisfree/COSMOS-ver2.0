@@ -1,5 +1,16 @@
 package com.shopping.cosmos.mapper;
 
-public interface ProductMapper {
+import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
+import com.shopping.cosmos.vo.ProductVO;
+
+@Mapper
+public interface ProductMapper {
+	
+	ProductVO readProduct(int id);
+	List<ProductVO> readProductList(ProductVO vo);
+	
+	
 }

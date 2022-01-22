@@ -1,0 +1,15 @@
+.mypage_main {
+    display: flex;
+    gap: 15em;
+    .mypage_nav {
+        .nav_warp {
+            display: flex;
+            flex-direction: column;
+            gap: .5em;
+        }
+    }
+
+    .mypage_content {
+
+    }
+}

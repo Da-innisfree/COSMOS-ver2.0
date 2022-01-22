@@ -7,7 +7,9 @@
     position: fixed;
     padding: 0 8vw;
     box-sizing: border-box;
-    background-color: orange;
+    // background-color: orange;
+    background-color: #fff;
+    border-bottom: 1px solid #b9b8b8;
     z-index: 9999999;
     .header_left {
         display: flex;
@@ -20,25 +22,32 @@
         }
         .main_menu {
             display: flex;
-            gap: 10px;
+            // gap: 10px;
             .item {
+                height: 60px;
+                padding: 0 5px;
                 .item_name {
-                    color: #fff;
+                    color: #000000;
                 }
 
                 .item_contents {
+                    background-color: orange;
+                    height: 0px;
                     width: 100%;
                     position: fixed;
                     top: 60px;
                     left: 0;
-                    display: none;
+                    overflow: hidden;
+                    transition: .5s;
+                    // display: none;
                     .content_menu{
                         display: flex;
                     }
                 }
 
                 &:hover .item_contents {
-                    display: flex;
+                    // display: flex;
+                    height: 500px;
                 }
             }
             
@@ -46,8 +55,9 @@
     }
 
     .header_right {
-        width: 200px;
+        // width: 200px;
         display: flex;
+        gap: 1em;
         align-items: center;
         justify-content: space-between;
     }
