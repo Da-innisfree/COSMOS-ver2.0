@@ -10,11 +10,20 @@ function WarningBanner(props) {
       return null;
     }
   
-    return (
-      <div className="warning">
-        비밀번호가 일치 하지 않습니다.
-      </div>
-    );
+    if(props.target === 'email'){
+        return (
+          <div className="warning">
+            이메일 형식이 잘못되었습니다.
+          </div>
+        );
+    }
+    else {
+        return (
+            <div className="warning">
+              비밀번호가 일치 하지 않습니다.
+            </div>
+          );
+    }
 }
 
 
@@ -103,7 +112,11 @@ class signup extends Component  {
         }else {
             console.log('백단 전송', this.state.email)
             Authapi.checkId(this.state.email).then(res => {
-                console.log(res.data);
+                if(res && res.data){
+                    this.setState({
+                        emailCheck: true,
+                    });
+                }
             }).catch(err => {
                 console.log(err);
             })
@@ -111,19 +124,21 @@ class signup extends Component  {
     }
     
     handleSubmit(event) {
-        console.log(this.state)
         // console.log(this.state.idCheck)
-        delete this.state.emailCheck
-        delete this.state.passwordCheck
+        // delete this.state.emailCheck
+        // delete this.state.passwordCheck
 
         event.preventDefault();
 
-        Authapi.signUp(this.state).then(res => {
-            console.log(res.data)
-        })
-        .catch(err => {
-            console.log(err);
-        });
+        if(this.state.emailCheck && this.state.passwordCheck){
+            console.log(this.state)
+            Authapi.signUp(this.state).then(res => {
+                console.log(res.data)
+            })
+            .catch(err => {
+                console.log(err);
+            });
+        }
     }
     
     render() {
@@ -135,14 +150,14 @@ class signup extends Component  {
                         <input type="text" defaultValue={this.state.email} onChange={this.hadndleId}/>
                     </div>
                     <div className="btn reversal" onClick={this.hadndleCheckId}>중복확인</div>
-                    <WarningBanner warn={this.state.emailCheck} />
+                    <WarningBanner warn={this.state.emailCheck} target="email"/>
                     <div className="input_box">
                         <label>비밀번호</label>
-                        <input type="text" defaultValue={this.state.password} onChange={this.hadndlePassword}/>
+                        <input type="password" defaultValue={this.state.password} onChange={this.hadndlePassword}/>
                     </div>
                     <div className="input_box">
                         <label>비밀번호 확인</label>
-                        <input type="text" defaultValue={this.state.passwordCheck} onChange={this.hadndlePasswordCheck}/>
+                        <input type="password" defaultValue={this.state.passwordCheck} onChange={this.hadndlePasswordCheck}/>
                     </div>
                     <WarningBanner warn={this.state.passwordCheck} />
                     <div className="input_box">

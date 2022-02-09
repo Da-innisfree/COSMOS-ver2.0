@@ -1,5 +1,7 @@
 package com.shopping.cosmos.controller;
 
+import java.util.Optional;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -29,11 +31,14 @@ public class AuthController {
 	@PostMapping("/signin")
 	public String signin(@RequestBody LoginRequest auth) {
 		
-		UserVO user = userService.login(auth.getEmail(), auth.getPassword());
+		Optional<UserVO> user = userService.login(auth.getEmail(), auth.getPassword());
+		String token = null;
 		
-		String token = jwtUtile.generateToken(user.getEmail());
+		if(user.isPresent()) {
+			token = jwtUtile.generateToken(user.get().getEmail());
+		}
+		return token;			
 		
-		return token;
 		
 	}
 	
@@ -55,14 +60,16 @@ public class AuthController {
 	}
 	
 	@PostMapping("/check/email")
-	public void checkEmail(@RequestBody String email) {
+	public ResponseEntity<?> checkEmail(@RequestBody String email) {
 		System.out.println("pass email : " + email);
 		
-		try {
-			userService.checkEmail(email);
-		} catch (Exception e) {
-			System.out.println("이메일 체크 에러 : " + e);
+		Optional<UserVO> user = userService.checkEmail(email);
+		
+		//user에 값이 없을경우
+		if(user.isEmpty()) {
+			return ResponseEntity.ok("true");
 		}
+		return ResponseEntity.ok("false");
 	}
 	
 	@GetMapping("/test")

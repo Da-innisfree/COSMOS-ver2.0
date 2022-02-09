@@ -21,12 +21,12 @@ public class UserServiceImpl implements UserService {
 
 	//로그인
 	@Override
-	public UserVO login(String email, String password) {
+	public Optional<UserVO> login(String email, String password) {
 		System.out.println("servicelogin: " + email +" " +  password);
 		
-		UserVO user = usermapper.findByEmail(email);  //err 처리
+		Optional<UserVO> user = usermapper.findByEmail(email);  //err 처리
 		
-		if(!passwordEncoder.matches(password, user.getPassword())) {
+		if(!passwordEncoder.matches(password, user.get().getPassword())) {
 			System.out.println("비밀번호가 다르다"); //err 처리
 		}
 		
@@ -50,17 +50,8 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public void checkEmail(String email) {
-		//Optional<UserVO> user = usermapper.findByEmail(email);
-		UserVO user = usermapper.findByEmail(email);
-		
-		System.out.println(user.getEmail());
-		
-		if(user.getEmail() == null) {
-			System.out.println("사용 가능한 이메일");
-		}else {
-			System.out.println("사용 불가능한 이메일");
-		}
+	public Optional<UserVO> checkEmail(String email) {
+		return usermapper.findByEmail(email);
 	}
 
 }

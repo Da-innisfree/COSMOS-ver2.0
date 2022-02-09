@@ -1,9 +1,11 @@
 package com.shopping.cosmos.service;
 
+import java.util.Optional;
+
 import com.shopping.cosmos.vo.UserVO;
 
 public interface UserService {
 	void insertUset(UserVO user);
-	UserVO login(String email, String password);
-	void checkEmail(String email);
+	Optional<UserVO> login(String email, String password);
+	Optional<UserVO> checkEmail(String email);
 }
