@@ -35,6 +35,7 @@ class signup extends Component  {
         this.hadndlePasswordCheck = this.hadndlePasswordCheck.bind(this);
         this.hadndlename = this.hadndlename.bind(this);
         this.hadndlePhone = this.hadndlePhone.bind(this);
+        this.hadndleCheckId = this.hadndleCheckId.bind(this);
 
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -95,6 +96,19 @@ class signup extends Component  {
             }
         );
     }
+
+    hadndleCheckId(event) {
+        if(this.state.email === ''){
+            console.log('이메일 입력 하세요')
+        }else {
+            console.log('백단 전송', this.state.email)
+            Authapi.checkId(this.state.email).then(res => {
+                console.log(res.data);
+            }).catch(err => {
+                console.log(err);
+            })
+        }
+    }
     
     handleSubmit(event) {
         console.log(this.state)
@@ -120,7 +134,7 @@ class signup extends Component  {
                         <label>아이디</label>
                         <input type="text" defaultValue={this.state.email} onChange={this.hadndleId}/>
                     </div>
-                    <div className="btn reversal">중복확인</div>
+                    <div className="btn reversal" onClick={this.hadndleCheckId}>중복확인</div>
                     <WarningBanner warn={this.state.emailCheck} />
                     <div className="input_box">
                         <label>비밀번호</label>

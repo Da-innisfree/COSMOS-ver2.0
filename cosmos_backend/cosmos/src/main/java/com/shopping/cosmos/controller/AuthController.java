@@ -54,6 +54,17 @@ public class AuthController {
 		return ResponseEntity.ok(true);
 	}
 	
+	@PostMapping("/check/email")
+	public void checkEmail(@RequestBody String email) {
+		System.out.println("pass email : " + email);
+		
+		try {
+			userService.checkEmail(email);
+		} catch (Exception e) {
+			System.out.println("이메일 체크 에러 : " + e);
+		}
+	}
+	
 	@GetMapping("/test")
 	public String test() {
 		return "gettest";

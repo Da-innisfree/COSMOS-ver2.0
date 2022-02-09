@@ -75,7 +75,7 @@ function Signin() {
                     <div className='btn reversal'>페이스북</div>
                 </div>
                 <div className='bottom_info'>
-                    COS 온라인 스토어는 더현대닷컴이 운영·제공하는 사이트로 기존 회원은 더현대닷컴 아이디와 비밀번호로 바로 이용 가능합니다.
+                    COSMOS 온라인 스토어는 더현대닷컴이 운영·제공하는 사이트로 기존 회원은 더현대닷컴 아이디와 비밀번호로 바로 이용 가능합니다.
                 </div>
             </div>
         </div>   

@@ -18,6 +18,10 @@ class AuthApi {
         return service.post('/signup', user);
     }
 
+    checkId(email){
+        return service.post('/check/email',email);
+    }
+
 }
 
 export default new AuthApi();

@@ -48,5 +48,19 @@ public class UserServiceImpl implements UserService {
 		
 		System.out.println("?????.........." + a);
 	}
+	
+	@Override
+	public void checkEmail(String email) {
+		//Optional<UserVO> user = usermapper.findByEmail(email);
+		UserVO user = usermapper.findByEmail(email);
+		
+		System.out.println(user.getEmail());
+		
+		if(user.getEmail() == null) {
+			System.out.println("사용 가능한 이메일");
+		}else {
+			System.out.println("사용 불가능한 이메일");
+		}
+	}
 
 }
