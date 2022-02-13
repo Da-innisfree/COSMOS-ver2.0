@@ -36,6 +36,10 @@ public class AuthController {
 		Optional<UserVO> user = userService.login(auth.getEmail(), auth.getPassword());
 		String token = null;
 		
+		//test
+		SecurityContext securityContext = SecurityContextHolder.getContext();
+		System.out.println(securityContext.getAuthentication().getAuthorities());
+		
 		System.out.println("?????" + user.get().getRole());
 		
 		if(user.isPresent()) {

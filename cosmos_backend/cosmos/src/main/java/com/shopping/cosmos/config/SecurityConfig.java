@@ -39,7 +39,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 	
+	
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		System.out.println("userDetailService.............");
 		auth.userDetailsService(this.userDetailService);
 	}
 	
@@ -51,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.csrf().disable()
 		.authorizeRequests()
 //		.antMatchers("/**").permitAll()
-		.antMatchers("/admin/**").hasAuthority("admin")
+		.antMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
 		.anyRequest().permitAll()    //.authenticated() 
 		.and()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) //토큰활용 세션 비활성
