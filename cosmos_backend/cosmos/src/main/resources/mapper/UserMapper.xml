@@ -9,6 +9,7 @@
 		<result column="user_pw" property="password"/>
 		<result column="user_name" property="name"/>
 		<result column="user_phone" property="phone"/>
+		<result column="user_role" property="role"/>
 	</resultMap>
 	
 
@@ -17,6 +18,6 @@
 	 </insert>
 	 
 	 <select id="findByEmail" parameterType="String"  resultMap="userMap">
-	 	SELECT user_email, user_pw, user_name, user_phone FROM tb_user WHERE user_email = #{email};
+	 	SELECT user_email, user_pw, user_name, user_phone, user_role FROM tb_user WHERE user_email = #{email};
 	 </select>
 </mapper>

@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,6 +35,8 @@ public class AuthController {
 		
 		Optional<UserVO> user = userService.login(auth.getEmail(), auth.getPassword());
 		String token = null;
+		
+		System.out.println("?????" + user.get().getRole());
 		
 		if(user.isPresent()) {
 			token = jwtUtile.generateToken(user.get().getEmail());
@@ -73,7 +77,10 @@ public class AuthController {
 	}
 	
 	@GetMapping("/test")
-	public String test() {
-		return "gettest";
+	public SecurityContext test() {
+		SecurityContext securityContext = SecurityContextHolder.getContext();
+		
+		System.out.println(securityContext);
+		return securityContext;
 	}
 }

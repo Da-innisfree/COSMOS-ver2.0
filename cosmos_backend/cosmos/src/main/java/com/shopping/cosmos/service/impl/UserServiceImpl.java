@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
 		System.out.println("servicelogin: " + email +" " +  password);
 		
 		Optional<UserVO> user = usermapper.findByEmail(email);  //err 처리
-		
+		//유저 객체 널 체크 여기서
 		if(!passwordEncoder.matches(password, user.get().getPassword())) {
 			System.out.println("비밀번호가 다르다"); //err 처리
 		}

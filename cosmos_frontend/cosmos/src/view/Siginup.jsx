@@ -47,6 +47,8 @@ class signup extends Component  {
         this.hadndleCheckId = this.hadndleCheckId.bind(this);
 
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.adminGetTest = this.adminGetTest.bind(this);
+        this.getTest = this.getTest.bind(this);
     }
 
     hadndleId(event) {
@@ -54,7 +56,7 @@ class signup extends Component  {
             this.setState(
                 {
                     email: event.target.value,
-                    emailCheck: true
+                    emailCheck: true //수정
                 }
             );
         }
@@ -113,6 +115,7 @@ class signup extends Component  {
             console.log('백단 전송', this.state.email)
             Authapi.checkId(this.state.email).then(res => {
                 if(res && res.data){
+                    console.log(res.data)
                     this.setState({
                         emailCheck: true,
                     });
@@ -139,6 +142,18 @@ class signup extends Component  {
                 console.log(err);
             });
         }
+    }
+
+    adminGetTest() {
+        Authapi.test().then(res => {
+            console.log(res.data);
+        })
+    }
+
+    getTest() {
+        Authapi.gettest().then(res => {
+            console.log(res.data);
+        })
     }
     
     render() {
@@ -176,6 +191,12 @@ class signup extends Component  {
                 <div className="btn_area">
                    <div className="btn reversal" onClick={this.handleSubmit}>
                        회원가입
+                   </div>
+                   <div className="btn reversal" onClick={this.adminGetTest}>
+                       admin get test
+                   </div>
+                   <div className="btn reversal" onClick={this.getTest}>
+                       get test
                    </div>
                 </div>
 

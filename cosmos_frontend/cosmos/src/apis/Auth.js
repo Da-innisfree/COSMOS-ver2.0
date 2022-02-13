@@ -7,6 +7,10 @@ class AuthApi {
     //     return axios.post(PRODUCT_API_BASE_URL+'/signup', user);
     // }
     test(){
+        return service.get(PRODUCT_API_BASE_URL+'/admin/test');
+    }
+    
+    gettest(){
         return service.get(PRODUCT_API_BASE_URL+'/test');
     }
 
