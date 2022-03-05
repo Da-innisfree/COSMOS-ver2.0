@@ -6,7 +6,9 @@ import Authapi from '../apis/Auth.js';
 import '../style/view/signin.scss'
 import '../style/comm.scss';
 
-function Signin() { 
+function Signin(props) { 
+
+    const { close } = props;
 
     const [user, setUser] = useState({
         email: '',
@@ -29,10 +31,14 @@ function Signin() {
 
     const login = () => {
         if(user.email && user.password){
-            console.log('login', user);
             Authapi.signIn(user).then(res => {
                 console.log(res);
-                localStorage.setItem('token', res.data);
+                if(res && res.data){
+                    console.log('login', res.data)
+                    localStorage.setItem('token', res.data.token);
+                    localStorage.setItem('userId', res.data.userId);
+                    close();
+                }
             }).catch(err => {
                 console.log(err);
             })

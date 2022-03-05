@@ -32,29 +32,23 @@ public class AuthController {
 	
 	@Autowired
 	UserServiceImpl userService;
-	
-	@Autowired
-	UserDetailsService userDetailsService;
 
 	//로그인
 	@PostMapping("/signin")
-	public String signin(@RequestBody LoginRequest auth) {
-		UserDetails userDetails = userDetailsService.loadUserByUsername("7");
-		System.out.println("뭐가 문제이까......" + userDetails.getUsername());
+	public LoginRespones signin(@RequestBody LoginRequest auth) {
+		
+		LoginRespones loginRespones = new LoginRespones();;
 		
 		Optional<UserVO> user = userService.login(auth.getEmail(), auth.getPassword());
 		String token = null;
 		
-		//test
-		SecurityContext securityContext = SecurityContextHolder.getContext();
-		System.out.println(securityContext.getAuthentication().getAuthorities());
-		
-		System.out.println("?????" + user.get().getUsername());
-		
 		if(user.isPresent()) {
 			token = jwtUtile.generateToken(user.get().getUsername(), user.get().getAuthorities());
+			loginRespones.setToken(token);
+			loginRespones.setUserId(user.get().getUsername());
 		}
-		return token;			
+		
+		return loginRespones;			
 		
 		
 	}

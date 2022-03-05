@@ -16,7 +16,7 @@ function Modal(props) {
             <button onClick={close}>close</button>
           </div>
           <div className="modal_body">
-              <SignIn/>
+              <SignIn close={close}/>
           </div>
         </div>
       </div>

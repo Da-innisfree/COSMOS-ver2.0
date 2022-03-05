@@ -19,12 +19,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Service
-@RequiredArgsConstructor
 public class UserDetailServiceImpl implements UserDetailsService {
 
-//	@Setter(onMethod_= {@Autowired})
-//	@Autowired
-	private final UserMapper usermapper;
+	@Autowired
+	UserMapper usermapper;
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

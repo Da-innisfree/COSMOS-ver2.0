@@ -39,8 +39,7 @@ public class JwtTokenProvider {
 	
 	//토큰 생성
 	public static String generateToken(String username, Collection<? extends GrantedAuthority> roles) {
-		System.out.println("key?..........." + key);
-		
+
 		Claims claims = Jwts.claims().setSubject(username);
 		claims.put("roles", roles); // 정보는 key / value 쌍으로 저장된다.
 		

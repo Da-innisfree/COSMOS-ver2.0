@@ -1,4 +1,6 @@
-import React from 'react'; 
+import React, { useEffect, useState } from 'react'; 
+
+import UseraApi from '../../apis/User.js';
 
 import '../../style/component/member/memberinfo.scss'
 import '../../style/comm.scss'
@@ -7,6 +9,18 @@ import { Component } from 'react/cjs/react.development';
 
 function MemberPasswordCheck(props) {
     let test = false
+
+    const [number, setNumber] = useState(0);
+
+    useEffect(() => {
+        console.log('한번 실행');
+
+        UseraApi.getUserInfo(7).then(res => {
+            console.log('시작값 : ', res.data);
+            setNumber(res.data);
+        })
+        // 여기에 코드를 적자
+    }, [])
 
     const passwordCheck = () => {
         props.PasswardCheck(!test)
@@ -18,7 +32,8 @@ function MemberPasswordCheck(props) {
                 <h3>회원정보변경</h3>
                 <div className="text_box">
                     <label>아이디</label>
-                    <span>test@test.com</span>
+                    {/* <span>test@test.com</span> */}
+                    <span>{number}</span>
                 </div>
                 <div className="text_box">
                     <label>이름</label>
