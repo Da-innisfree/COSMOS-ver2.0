@@ -7,10 +7,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,19 +24,29 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 	
+	@Autowired
+	JwtTokenProvider jwtTokenProvider;
+	
+	@Autowired
+	UserDetailsService userDetailsService;
+	
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
-		String userId = null;
+		String jwt = null;
+		String username = null;
 		//헤더에서 토큰 
 		String requestTokenHeader = request.getHeader("Authorization");
 		
 		if(requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
-			System.out.println();
-			System.out.println("jwt필터 : " + requestTokenHeader);
+			jwt = requestTokenHeader.substring("Bearer ".length());
+			System.out.println("jwt");
 			try {
-				userId = JwtTokenProvider.getUserIdFromJWT(requestTokenHeader.substring("Bearer ".length()));
-				System.out.println("jwt필터 user id: " + userId);
+				username = jwtTokenProvider.getUserIdFromJWT(jwt);
+				if(username != null) {
+					System.out.println("jwt필터 user id: " + username);
+					
+				}
 			}catch(IllegalAccessError e) {
 				System.out.println("Unable to get JWT Token");
 			}catch(ExpiredJwtException e) {
@@ -46,11 +62,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 		if(ip == null) {
 			ip = request.getRemoteAddr();
 		}
-		System.out.println();
-		System.out.println("Get Client ip : " + ip);
-		
-		if(userId != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-			System.out.println("썩을 유저");
+		if(username != null && SecurityContextHolder.getContext().getAuthentication() == null) {			
+			UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+			
+			//userDetails 없는경우 체크
+			Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
+			
+			SecurityContextHolder.getContext().setAuthentication(authentication);
 		}
 		
 		filterChain.doFilter(request, response);

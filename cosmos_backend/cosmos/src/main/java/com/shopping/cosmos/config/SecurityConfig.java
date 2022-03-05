@@ -26,7 +26,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	protected static final List<String> ALLOWED_METHODS = Arrays.asList(new String[] { "HEAD", "GET", "POST", "PUT", "DELETE", "OPTIONS" });
 	protected static final List<String> ALLOWED_HEADERS = Arrays.asList(new String[] { "Authorization", "x-auth-token","X-Requested-With", "Content-Type", "Content-Length", "Cache-Control", "Accept", "Origin" });
-//	protected static final List<String> ALLOWED_HEADERS = Arrays.asList(new String[] { "*" });
 	
 	@Autowired
 	private JwtAuthenticationFilter jwtAuthenticationFilter;
@@ -39,10 +38,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 	
-	
+	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		System.out.println("userDetailService.............");
-		auth.userDetailsService(this.userDetailService);
+		auth.userDetailsService(this.userDetailService).passwordEncoder(passwordEncoder());	
 	}
 	
 	@Override
@@ -53,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.csrf().disable()
 		.authorizeRequests()
 //		.antMatchers("/**").permitAll()
-		.antMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
+		.antMatchers("/admin/**").hasRole("ADMIN") //.hasAuthority("ROLE_ADMIN") //유저 권한별 차단
 		.anyRequest().permitAll()    //.authenticated() 
 		.and()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) //토큰활용 세션 비활성

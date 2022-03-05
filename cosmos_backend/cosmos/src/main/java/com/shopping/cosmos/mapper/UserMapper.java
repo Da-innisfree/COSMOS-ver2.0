@@ -9,6 +9,7 @@ import com.shopping.cosmos.vo.UserVO;
 @Mapper
 public interface UserMapper {
 	int insertUser(UserVO user);
+	Optional<UserVO> findById(String username);
 	Optional<UserVO> findByEmail(String email);
 //	UserVO findByEmail(String email);
 }

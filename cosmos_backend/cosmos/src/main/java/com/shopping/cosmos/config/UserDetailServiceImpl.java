@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,26 +15,25 @@ import org.springframework.stereotype.Service;
 import com.shopping.cosmos.mapper.UserMapper;
 import com.shopping.cosmos.vo.UserVO;
 
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+
 @Service
+@RequiredArgsConstructor
 public class UserDetailServiceImpl implements UserDetailsService {
 
-	UserMapper usermapper;
+//	@Setter(onMethod_= {@Autowired})
+//	@Autowired
+	private final UserMapper usermapper;
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
-		System.out.println("흠......" + username);
+		Optional<UserVO> user = usermapper.findById(username);		
 		
-		Optional<UserVO> user = usermapper.findByEmail(username);		
-		
-		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-		
-		if(user.get().getRole() != null) {
-			grantedAuthorities.add(new SimpleGrantedAuthority(user.get().getRole()));
-		}
-//		return (UserDetails) new org.springframework.security.core.userdetails.User(user.get().getEmail(),
-//				user.get().getPassword(), grantedAuthorities);
-		return (UserDetails) user.get();
+		System.out.println("UserDetailServeiceImple : " + user.get().getAuthorities());
+
+		return (UserDetails)user.get();
 	}
 
 }
