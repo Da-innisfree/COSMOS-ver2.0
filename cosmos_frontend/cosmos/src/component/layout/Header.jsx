@@ -16,6 +16,11 @@ function Header() {
         setModalOpen(false);
     }
 
+    const logOut = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('userId');
+    } 
+
     return ( 
         <header className='header'> 
             <div className="header_left">
@@ -152,6 +157,7 @@ function Header() {
                 {/* <a href="/signin">로그인</a> */}
                 <a href='/mypage'>마이 페이지</a>
                 <button onClick={openModal}>로그인</button>
+                <button onClick={logOut}>로그아웃</button>
                 <Modal open={modalOpen} close={closeModal}/>
             </div>
         </header> 

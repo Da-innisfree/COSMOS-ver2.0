@@ -3,6 +3,8 @@ package com.shopping.cosmos.service.impl;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	UserMapper usermapper;
+	
+	@Autowired
+	SmsServiceImpl smsServiceImpl;
 
 	//로그인
 	@Override
@@ -52,6 +57,46 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Optional<UserVO> checkEmail(String email) {
 		return usermapper.findByEmail(email);
+	}
+
+
+	@Override
+	public UserVO getUserInfo(String id) {
+		Optional<UserVO> user = usermapper.findById(id);
+		
+		if(user.isPresent()) {
+			return user.get();
+		}
+		
+		return null;
+	}
+
+
+	@Override
+	public boolean confirmPassword(String password) {
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		System.out.println(userDetails.getPassword());
+		
+		if(!passwordEncoder.matches(password, userDetails.getPassword())) {
+			//System.out.println("비밀번호가 다르다"); //err 처리
+			return false;
+		}
+		
+		return true;
+		
+	}
+
+
+	@Override
+	public void phonTest() {
+		try {
+			smsServiceImpl.sendSms("01093481890", "TestSms");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }

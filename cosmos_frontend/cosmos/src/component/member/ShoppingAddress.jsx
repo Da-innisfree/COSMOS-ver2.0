@@ -1,9 +1,45 @@
-import React from 'react'; 
+import React, { useEffect, useState } from 'react'; 
+
+import useraApi from '../../apis/User.js';
 
 import '../../style/comm.scss'
 import '../../style/component/member/shoppingaddress.scss'
 
 function ShoppingAddress() {
+
+    let userId = localStorage.getItem("userId");
+
+    const [user, setUset] = useState({
+      email : '',
+    });
+
+    const [password, setPassword] = useState('');
+
+    useEffect(() => {
+        useraApi.getUserInfo(userId).then(res => {
+            setUset({
+                ...user,
+                email : res.data.email,
+            })
+        })
+        // 여기에 코드를 적자
+    }, [userId]);
+
+    const onChangePassword = (e) => {
+        setPassword(e.target.value);
+    }
+
+    const passwordCheck = () => {
+        console.log(password);
+        useraApi.confirmPassword(password).then(res => {
+            console.log(res.data);
+            if(res && res.data){
+                console.log(res.data)
+                // props.PasswardCheck(!test)
+            }
+        })
+    }
+
     
     return (
       <div className='address_info'>
@@ -17,13 +53,13 @@ function ShoppingAddress() {
             </div>
             <div className="text_box">
                 <label>아이디</label>
-                <span>test@test.com</span>
+                <span>{user.email}</span>
             </div>
             <div className="input_box">
                 <label>비밀번호</label>
-                <input type="password" />
+                <input type="password" value={password} onChange={onChangePassword} />
             </div>
-            <div className="btn full">확인</div>
+            <div className="btn full" onClick={passwordCheck}>확인</div>
         </div>
       </div>
     );

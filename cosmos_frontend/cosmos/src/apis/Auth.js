@@ -26,6 +26,10 @@ class AuthApi {
         return service.post('/check/email',email);
     }
 
+    smsTest(){
+        return service.get('/user/phontest');
+    }
+
 }
 
 export default new AuthApi();

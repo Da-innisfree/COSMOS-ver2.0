@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'; 
 
-import UseraApi from '../../apis/User.js';
+import useraApi from '../../apis/User.js';
 
 import '../../style/component/member/memberinfo.scss'
 import '../../style/comm.scss'
@@ -10,20 +10,40 @@ import { Component } from 'react/cjs/react.development';
 function MemberPasswordCheck(props) {
     let test = false
 
-    const [number, setNumber] = useState(0);
+    let userId = localStorage.getItem("userId");
+
+    const [user, setUset] = useState({
+        email : '',
+        name: '',
+        phone: '',
+    });
+
+    const [password, setPassword] = useState('');
 
     useEffect(() => {
-        console.log('한번 실행');
-
-        UseraApi.getUserInfo(7).then(res => {
-            console.log('시작값 : ', res.data);
-            setNumber(res.data);
+        useraApi.getUserInfo(userId).then(res => {
+            setUset({
+                ...user,
+                email : res.data.email,
+                name: res.data.name,
+                phone: res.data.phone,
+            })
         })
         // 여기에 코드를 적자
-    }, [])
+    }, [userId]);
+
+    const onChangePassword = (e) => {
+        setPassword(e.target.value);
+    }
 
     const passwordCheck = () => {
-        props.PasswardCheck(!test)
+        console.log(password);
+        useraApi.confirmPassword(password).then(res => {
+            console.log(res.data);
+            if(res && res.data){
+                props.PasswardCheck(!test)
+            }
+        })
     }
 
     return (
@@ -32,24 +52,23 @@ function MemberPasswordCheck(props) {
                 <h3>회원정보변경</h3>
                 <div className="text_box">
                     <label>아이디</label>
-                    {/* <span>test@test.com</span> */}
-                    <span>{number}</span>
+                    <span>{user.email}</span>
                 </div>
                 <div className="text_box">
                     <label>이름</label>
-                    <span>test</span>
+                    <span>{user.name}</span>
                 </div>
                 <div className="text_box">
                     <label>이메일</label>
-                    <span>test@test.com</span>
+                    <span>{user.email}</span>
                 </div>
                 <div className="text_box">
                     <label>휴대폰번호</label>
-                    <span>010-1234-1234</span>
+                    <span>{user.phone}</span>
                 </div>
                 <div className="input_box">
                     <label>비밀번호</label>
-                    <input type="password" />
+                    <input type="password" value={password} onChange={onChangePassword} />
                 </div>
                 <div>
                     고객님의 소중한 회원정보를 확인/변경 하기 위해 비밀번호 재확인이 필요합니다.

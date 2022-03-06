@@ -45,6 +45,7 @@ class signup extends Component  {
         this.hadndlename = this.hadndlename.bind(this);
         this.hadndlePhone = this.hadndlePhone.bind(this);
         this.hadndleCheckId = this.hadndleCheckId.bind(this);
+        this.hadndPhonTest = this.hadndPhonTest.bind(this);
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.adminGetTest = this.adminGetTest.bind(this);
@@ -155,6 +156,10 @@ class signup extends Component  {
             console.log(res.data);
         })
     }
+
+    hadndPhonTest() {
+        Authapi.smsTest().then();
+    }
     
     render() {
         return (
@@ -183,6 +188,7 @@ class signup extends Component  {
                         <label>핸드폰</label>
                         <input type="text" defaultValue={this.state.phone} onChange={this.hadndlePhone}/>
                     </div>
+                    <div className="btn reversal" onClick={this.hadndPhonTest}>핸드폰 인증</div>
                     <div className="input_box">
                         <label></label>
                         <input type="text" placeholder="인증 번호 입력"/>
