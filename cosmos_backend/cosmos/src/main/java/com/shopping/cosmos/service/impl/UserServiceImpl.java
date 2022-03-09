@@ -89,9 +89,13 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
-	public void phonTest() {
+	public void phoneAuthNum(String phone) {
+		int randomNumber = (int)((Math.random()* (9999 - 1000 + 1)) + 1000);//난수 생성
+
+		String authNumberMassage = "[COSMOS] 인증번호 " + randomNumber + " 를 입력하세요.";
+		
 		try {
-			smsServiceImpl.sendSms("01093481890", "TestSms");
+			smsServiceImpl.sendSms("01093481890", authNumberMassage);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

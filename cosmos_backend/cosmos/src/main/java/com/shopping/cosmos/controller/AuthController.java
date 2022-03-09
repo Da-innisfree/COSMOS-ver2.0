@@ -83,6 +83,11 @@ public class AuthController {
 		return ResponseEntity.ok("false");
 	}
 	
+	@PostMapping("/authphone")
+	public void authphone(@RequestBody String phone) {
+		userService.phoneAuthNum(phone);
+	}
+	
 	@GetMapping("/test")
 	public SecurityContext test() {
 		SecurityContext securityContext = SecurityContextHolder.getContext();

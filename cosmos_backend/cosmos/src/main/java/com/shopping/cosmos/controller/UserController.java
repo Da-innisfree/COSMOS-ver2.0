@@ -31,8 +31,5 @@ public class UserController {
 		return userServiceImpl.confirmPassword(password);
 	}
 	
-	@GetMapping("/phontest")
-	public void phonTest() {
-		userServiceImpl.phonTest();
-	}
+	
 }

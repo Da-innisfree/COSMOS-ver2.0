@@ -60,6 +60,7 @@ input[type='radio']{
 }
 
 .input_box {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: .5em;
@@ -79,6 +80,19 @@ input[type='radio']{
         &:focus {
             border-bottom: 2px solid #000;
         }
+    }
+
+    >.input_sub_btn {
+        position: absolute;
+        right: 5px;
+        bottom: 4px;
+        font-size: 10pt;
+        border-radius: 10px;
+        border: 1px solid #646464;
+        padding: 1px;
+        box-sizing: border-box;
+        color: #646464;
+        cursor: pointer;
     }
 }
 

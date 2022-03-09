@@ -10,5 +10,5 @@ public interface UserService {
 	Optional<UserVO> checkEmail(String email);
 	UserVO getUserInfo(String id);
 	boolean confirmPassword(String password);
-	void phonTest();
+	void phoneAuthNum(String phone);
 }
