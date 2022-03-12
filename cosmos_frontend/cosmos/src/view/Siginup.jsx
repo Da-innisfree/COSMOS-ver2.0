@@ -184,32 +184,43 @@ function SignUp() {
         <div>
             <div className="signup_warp">
                 <div className="input_box">
-                    <label>아이디</label>
-                    <input name="email" type="text" onChange={onChange}/>
-                    <div className="input_sub_btn" onClick={checkEmail}>중복확인</div>
+                    <div>아이디</div>
+                    <div className="input_area">
+                        <input name="email" type="text" onChange={onChange}/>
+                        <div className="input_sub_btn" onClick={checkEmail}>중복확인</div>
+                    </div>
                 </div>
                 <WarningBanner warn={validation.emailRegExpCheck} target="email"/>
                 <div className="input_box">
-                    <label>비밀번호</label>
-                    <input name="password" type="password" onChange={onChange}/>
+                    <div>비밀번호</div>
+                    <div className="input_area">
+                        <input name="password" type="password" onChange={onChange}/>
+                    </div>
                 </div>
                 <div className="input_box">
-                    <label>비밀번호 확인</label>
-                    <input name="passwordCheck" type="password" onChange={onChange}/>
+                    <div>비밀번호 확인</div>
+                    <div className="input_area">
+                        <input name="passwordCheck" type="password" onChange={onChange}/>
+                    </div>
                 </div>
                 <WarningBanner warn={validation.passwordCheck} target="password"/>
                 <div className="input_box">
-                    <label>이름</label>
-                    <input name="name" type="text" onChange={onChange}/>
+                    <div>이름</div>
+                    <div className="input_area">
+                        <input name="name" type="text" onChange={onChange}/>
+                    </div>
                 </div>
                 <div className="input_box">
-                    <label>핸드폰</label>
-                    <input name="phone" type="text" onChange={onChange}/>
-                    <div className="input_sub_btn" onClick={phoneAuth}>인증번호 전송</div>
+                    <div>핸드폰</div>
+                    <div className="input_area">
+                        <input name="phone" type="text" onChange={onChange}/>
+                        <div className="input_sub_btn" style={{width: "200px"}} onClick={phoneAuth}>인증번호 전송</div>                    
+                    </div>
                 </div>
                 <div className="input_box">
-                    <label></label>
-                    <input type="text" placeholder="인증 번호 입력"/>
+                    <div className="input_area">
+                        <input type="text" placeholder="인증 번호 입력"/>
+                    </div>
                 </div>
                 {/* <Timer warn={authTime} target="authphone"/> */}
             </div>

@@ -1,13 +1,14 @@
 import React from 'react'; 
 
 import SignIn from "../../view/SignIn.jsx";
+import DaumPostcode from '../common/DaumPostCode.jsx';
 
 import "../../style/component/common/Modal.scss"
 
 function Modal(props) {
 
-    const { open, close } = props;
-
+    const { open, close, target } = props;
+    
     return (
       // <div className={ open ? 'modal active' : 'modal'} onClick={close}>
       <div className={ open ? 'modal active' : 'modal'}>
@@ -16,7 +17,8 @@ function Modal(props) {
             <button onClick={close}>close</button>
           </div>
           <div className="modal_body">
-              <SignIn close={close}/>
+              {target === 'login' && <SignIn close={close}/>}
+              {target === 'address' && <DaumPostcode/>}
           </div>
         </div>
       </div>

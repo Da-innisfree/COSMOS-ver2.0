@@ -12,6 +12,10 @@ class UserApi {
         return service.post(PRODUCT_API_BASE_URL + '/confirmPassword', password);
     }
 
+    getAddress(id) {
+        return service.post(PRODUCT_API_BASE_URL + '/address', id);
+    }
+
 }
 
 export default new UserApi();

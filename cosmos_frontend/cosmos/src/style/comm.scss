@@ -45,11 +45,18 @@ input[type='radio']{
     background-color: #fff;
     cursor: pointer;
     &.reversal {
-        border: 1px solid #000;
+        border: 1px solid #646464;
         &:hover {
             background-color: #000;
             color: #fff;
-        }   
+        }
+    }
+
+    &.line {
+        border: 1px solid #E7E7E7;
+        &:hover {
+            border: 1px solid #000000;
+        }
     }
 
     &.full {
@@ -60,40 +67,45 @@ input[type='radio']{
 }
 
 .input_box {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: .5em;
-    > label {
+    // position: relative;
+    // display: flex;
+    // flex-direction: column;
+    // gap: .5em;
+    // > label {
+    > div {
         font-size: 10pt;
         color: #646464;
     }
 
-    > input {
-        background-color: #d8d8d8;
-        outline: 0;
-        border: 0;
-        height: 30px;
-        box-sizing: border-box;
-        padding: 5px;
-        font-size: 10pt;
-        &:focus {
-            border-bottom: 2px solid #000;
+    > .input_area {
+        display: flex;
+        & input {
+            width: 100%;
+            background-color: #d8d8d8;
+            outline: 0;
+            border: 0;
+            height: 30px;
+            box-sizing: border-box;
+            padding: 5px;
+            font-size: 10pt;
+            &:focus {
+                border-bottom: 2px solid #000;
+            }
+        }
+        & .input_sub_btn {
+            width: 100px;
+            font-size: 10pt;
+            text-align: center;
+            line-height: 26px;
+            border: 1px solid #646464;
+            padding: 1px;
+            box-sizing: border-box;
+            margin-left: 10px;
+            color: #646464;
+            cursor: pointer;
         }
     }
 
-    >.input_sub_btn {
-        position: absolute;
-        right: 5px;
-        bottom: 4px;
-        font-size: 10pt;
-        border-radius: 10px;
-        border: 1px solid #646464;
-        padding: 1px;
-        box-sizing: border-box;
-        color: #646464;
-        cursor: pointer;
-    }
 }
 
 .text_box {

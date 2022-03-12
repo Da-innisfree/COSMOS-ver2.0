@@ -1,4 +1,5 @@
 import React, { useState } from 'react'; 
+import { useHistory } from 'react-router-dom';
 
 import Modal from "../common/Modal.jsx";
 
@@ -7,6 +8,8 @@ import '../../style/component/layout/Header.scss'
 function Header() { 
 
     const [modalOpen, setModalOpen] = useState(false);
+
+    let [login, setLogin] = useState(false);
     
     const openModal= () =>{
         setModalOpen(true);
@@ -14,13 +17,26 @@ function Header() {
 
     const closeModal= ()=>{
         setModalOpen(false);
+        loginCheck();
     }
 
+    //수정해라
     const logOut = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('userId');
-    } 
-
+        setLogin(false);
+        console.log('새로고침 합니다')
+    }
+    
+    //수정해라
+    const loginCheck = () => {
+        if(localStorage.getItem('token') && localStorage.getItem('userId')){
+            setLogin(true);
+            console.log('로그인', login)
+        }
+    }
+    
+    
     return ( 
         <header className='header'> 
             <div className="header_left">
@@ -155,10 +171,10 @@ function Header() {
                 <div>검색</div>
                 <div>배송국가</div>
                 {/* <a href="/signin">로그인</a> */}
-                <a href='/mypage'>마이 페이지</a>
-                <button onClick={openModal}>로그인</button>
-                <button onClick={logOut}>로그아웃</button>
-                <Modal open={modalOpen} close={closeModal}/>
+                {login && <a href='/mypage'>마이 페이지</a>}
+                {!login && <button onClick={openModal}>로그인</button>}
+                {login && <button onClick={logOut}>로그아웃</button>}
+                <Modal open={modalOpen} close={closeModal} target={'login'}/>
             </div>
         </header> 
     ); 

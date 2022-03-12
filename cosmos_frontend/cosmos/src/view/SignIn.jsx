@@ -16,11 +16,16 @@ function Signin(props) {
     });
 
     const handleInput = (e) => {
-        e.persist();
+        // e.persist();
         const { name , value } = e.target;
         setUser({...user,
             [name]: value
         });
+
+        if(e.key){
+            console.log('????')
+            // login();
+        }
     }
 
     const onCheckEnter = (e) =>{
@@ -57,12 +62,16 @@ function Signin(props) {
             </div>
             <div className="middle_content" onChange={onCheckEnter}>
                 <div className="input_box">
-                    <label>아이디 또는 이메일</label>
-                    <input type="text" name='email' value={user.email} onChange={handleInput}/>
+                    <div>아이디 또는 이메일</div>
+                    <div className='input_area'>
+                        <input type="text" name='email' value={user.email} onChange={handleInput}/>
+                    </div>
                 </div>
                 <div className="input_box">
-                    <label>비밀번호</label>
-                    <input type="password" name='password' value={user.password} onChange={handleInput}  />
+                    <div>비밀번호</div>
+                    <div className='input_area'>
+                        <input type="password" name='password' value={user.password} onChange={handleInput} onKeyUp={ (e) => { if(e.key === 'Enter'){ login() }}} />
+                    </div>
                 </div>  
                 <div className="btn_area">
                     <div className='btn full' onClick={login}>로그인</div>

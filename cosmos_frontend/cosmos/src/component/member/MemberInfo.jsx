@@ -67,8 +67,10 @@ function MemberPasswordCheck(props) {
                     <span>{user.phone}</span>
                 </div>
                 <div className="input_box">
-                    <label>비밀번호</label>
-                    <input type="password" value={password} onChange={onChangePassword} />
+                    <div>비밀번호</div>
+                    <div className='input_area'>
+                        <input type="password" value={password} onChange={onChangePassword} onKeyUp={ e => {if(e.key === 'Enter') { passwordCheck() }}}/>
+                    </div>
                 </div>
                 <div>
                     고객님의 소중한 회원정보를 확인/변경 하기 위해 비밀번호 재확인이 필요합니다.

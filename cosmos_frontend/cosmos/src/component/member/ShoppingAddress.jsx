@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 
 import useraApi from '../../apis/User.js';
 
+import Modal from "../common/Modal.jsx";
+
 import '../../style/comm.scss'
 import '../../style/component/member/shoppingaddress.scss'
 
-function ShoppingAddress() {
+//비밀번호 체크
+function ShoppingAddressAuth(props) {
 
     let userId = localStorage.getItem("userId");
 
@@ -35,7 +38,7 @@ function ShoppingAddress() {
             console.log(res.data);
             if(res && res.data){
                 console.log(res.data)
-                // props.PasswardCheck(!test)
+                props.PasswardCheck(res.data);
             }
         })
     }
@@ -56,13 +59,135 @@ function ShoppingAddress() {
                 <span>{user.email}</span>
             </div>
             <div className="input_box">
-                <label>비밀번호</label>
-                <input type="password" value={password} onChange={onChangePassword} />
+                <div>비밀번호</div>
+                <div className='input_area'>
+                    <input type="password" value={password} onChange={onChangePassword} onKeyUp={e => { if(e.key === 'Enter') { passwordCheck() } }}/>
+                </div>
             </div>
             <div className="btn full" onClick={passwordCheck}>확인</div>
         </div>
       </div>
     );
 }
+
+//새로 입력
+//sql INSERT INTO tb_user_address(user_id, address, address_detail, address_postcode, address_name, address_phone) VALUE(22, '경기 성남시 분당구 판교역로 235', '601호', '신사동', '유저', '01012341234')
+function NewInputAddress() {
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const openModal= () =>{
+        setModalOpen(true);
+    }
+
+    const closeModal= ()=>{
+        setModalOpen(false);
+    }
+
+
+    return (
+        <div>
+            <div className='address_input_area'>
+                <div className="input_box">
+                    <div>이름</div>
+                    <div className='input_area'>
+                        <input type="text" name='text'/>
+                    </div>
+                </div>
+                <div className="input_box">
+                    <div>휴대폰번호</div>
+                    <div className='input_area'>
+                        <input type="text" name='text'/>
+                    </div>
+                </div>
+                <div>"-" 없이 숫자만 입력해 주세요</div>
+                <div className="input_box">
+                    <div>배송지주소</div>
+                    <div className='input_area'>
+                        <input type="text" name='text' />
+                        <div className='input_sub_btn' onClick={openModal}>찾기</div>
+                    </div>
+                </div>
+                {/* 이부분 css 수정*/}
+                <div className="input_box">
+                    <div className='input_area'>
+                        <input type="text" name='text'/>
+                    </div>
+                </div>
+                <div className="input_box">
+                    <div className='input_area'>
+                        <input type="text" name='text'/>
+                    </div>
+                </div>
+                {/* 이부분 css 수정*/}
+            </div>
+            <div className='btn_area'>
+                <div className="btn line">취소</div>    
+                <div className="btn line">확인</div>    
+            </div>
+            <Modal open={modalOpen} close={closeModal} target={'address'}/>
+        </div>
+    )
+}
+
+//주소 입력 수정
+function ShoppingAddress() {
+    const [passwordCheck, setPasswordCheck] = useState(false);
+    const [correction, setCorrection] = useState(null);
+    const [addressInfo, setAddressInfo] = useState([]);
   
+    const [toggle , setToggle] = useState(false);
+
+    const passwordAuth = (passCheck) => {
+        console.log('adls',passCheck);
+        setPasswordCheck(passCheck);
+    }
+
+    let userId = localStorage.getItem("userId");
+
+    useEffect(() => {
+        if(passwordCheck){
+            useraApi.getAddress(userId).then(res => {
+                setAddressInfo(res.data);
+            });
+            console.log(addressInfo);
+        }
+        // 여기에 코드를 적자
+    }, [passwordCheck]);
+    
+    return (
+        <div>
+            {!passwordCheck && <ShoppingAddressAuth PasswardCheck={passwordAuth}/>}
+            {passwordCheck && <div>
+                <h3>배송지 정보</h3>
+                <div className='input_info_cho'>
+                    {/* <input id='info' type="radio"/><label htmlFor='info'>배송지 목록</label>
+                    <input id='input' type="radio"/><label htmlFor='input'>새로 입력</label> */}
+                    <span onClick={() => setToggle(false)}>배송지 목록</span>
+                    <span onClick={() => setToggle(true)}>새로 입력</span>
+                </div>
+                {/* 배송목록 컴포넌트화 할ㄲㅏ? */}
+                {!toggle && addressInfo.length > 0 && <div>
+                    <div className='address_input_area'>
+                        { addressInfo.map((address, key) => {
+                                return <div>
+                                    {correction === null && <>
+                                        <span>이름</span>
+                                        <span onClick={() => setCorrection(key)}>수정</span>    
+                                        <span>삭제</span>
+                                        <div>핸드폰 번호</div>    
+                                        <div>{address}</div>
+                                    </>}
+                                    {correction === key && <NewInputAddress/>}    
+                                </div>
+                            })
+                        }
+                    </div>
+                </div>}
+                {/* 새로 입력 */}
+                {toggle && <NewInputAddress/>}
+            </div>}
+        </div>
+    )
+}
+
 export default ShoppingAddress;
