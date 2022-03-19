@@ -11,10 +11,22 @@
 		<result column="user_phone" property="phone"/>
 		<result column="user_role" property="role"/>
 	</resultMap>
-	
+
+	<resultMap type="com.shopping.cosmos.vo.AddressInfoVO" id="addressMap">
+		<result column="user_id" property="userId"/>
+		<result column="address_name" property="userName"/>
+		<result column="address_phone" property="phone"/>
+		<result column="address_postcode" property="zonecode"/>
+		<result column="address" property="fullAddress"/>
+		<result column="address_detail" property="addressDetail"/>
+	</resultMap>
 
 	 <insert id="insertUser" parameterType="com.shopping.cosmos.vo.UserVO" keyProperty="user_id">
 	 	INSERT INTO tb_user(user_email, user_pw, user_name, user_phone) VALUE(#{email}, #{password}, #{name}, #{phone});
+	 </insert>
+
+	 <insert id="insertAddress" parameterType="com.shopping.cosmos.vo.AddressInfoVO" keyProperty="user_id">
+	 	INSERT INTO tb_user_address(user_id, address, address_detail, address_postcode, address_name, address_phone) VALUE(#{userId}, #{fullAddress}, #{addressDetail}, #{zonecode}, #{userName}, #{phone});
 	 </insert>
 
 	 <select id="findById" parameterType="String"  resultMap="userMap">
@@ -23,6 +35,10 @@
 	 
 	 <select id="findByEmail" parameterType="String"  resultMap="userMap">
 	 	SELECT user_id, user_email, user_pw, user_name, user_phone, user_role FROM tb_user WHERE user_email = #{email};
+	 </select>
+	 
+	 <select id="getAddressByUserId" parameterType="String"  resultMap="addressMap">
+	 	SELECT address, address_detail, address_postcode, address_name, address_phone FROM tb_user_address WHERE user_id = #{id};
 	 </select>
 
 </mapper>

@@ -3,9 +3,13 @@ import React from 'react';
 import DaumPostcode from 'react-daum-postcode';
 
 
-const Postcode = () => {
+const Postcode = (props) => {
+    const setAddress = props.setAddress
+    const address = props.address
+
     const handleComplete = (data) => {
       let fullAddress = data.address;
+      let zonecode = data.zonecode;
       let extraAddress = ''; 
       
       if (data.addressType === 'R') {
@@ -18,8 +22,17 @@ const Postcode = () => {
         fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
       }
       
+      console.log(zonecode);
+      // setAddress(zonecode);
       console.log(extraAddress)
       console.log(fullAddress);  // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
+
+      if(zonecode && fullAddress){
+        setAddress({...address,
+          zonecode : zonecode,
+          fullAddress : fullAddress,
+        });
+      }
     }
   
     return (

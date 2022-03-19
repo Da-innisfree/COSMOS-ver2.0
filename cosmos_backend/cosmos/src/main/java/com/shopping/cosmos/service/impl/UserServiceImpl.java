@@ -1,5 +1,6 @@
 package com.shopping.cosmos.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.shopping.cosmos.mapper.UserMapper;
 import com.shopping.cosmos.service.UserService;
+import com.shopping.cosmos.vo.AddressInfoVO;
 import com.shopping.cosmos.vo.UserVO;
 
 @Service
@@ -71,7 +73,7 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
-
+	//user비밀번호 확인
 	@Override
 	public boolean confirmPassword(String password) {
 		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -86,8 +88,18 @@ public class UserServiceImpl implements UserService {
 		return true;
 		
 	}
+	
+	@Override
+	public int saveAddress(AddressInfoVO addressInfo) {
+		return usermapper.insertAddress(addressInfo);
+	}
+	
+	@Override
+	public List<AddressInfoVO> getAddressByUserId(String id) {
+		return usermapper.getAddressByUserId(id);
+	}
 
-
+	//문자 인증
 	@Override
 	public void phoneAuthNum(String phone) {
 		int randomNumber = (int)((Math.random()* (9999 - 1000 + 1)) + 1000);//난수 생성
@@ -102,5 +114,9 @@ public class UserServiceImpl implements UserService {
 		}
 		
 	}
+
+
+	
+
 
 }

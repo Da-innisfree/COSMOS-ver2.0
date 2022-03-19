@@ -72,8 +72,21 @@ function ShoppingAddressAuth(props) {
 
 //새로 입력
 //sql INSERT INTO tb_user_address(user_id, address, address_detail, address_postcode, address_name, address_phone) VALUE(22, '경기 성남시 분당구 판교역로 235', '601호', '신사동', '유저', '01012341234')
-function NewInputAddress() {
+function NewInputAddress(porps) {
+    const setToggle = porps.setToggle
+
     const [modalOpen, setModalOpen] = useState(false);
+
+    const [addressInfo, setAddressInfo] = useState({
+        userId: localStorage.getItem('userId'),
+        userName: '',
+        phone: '',
+    });
+    const [address, setAddress] = useState({
+        fullAddress : '',
+        zonecode: '',
+        addressDetail : '',
+    });
 
     const openModal= () =>{
         setModalOpen(true);
@@ -83,6 +96,17 @@ function NewInputAddress() {
         setModalOpen(false);
     }
 
+    const saveAddress = () => {
+        const fullAddressInfo = Object.assign(addressInfo, address);
+
+        useraApi.saveAddress(fullAddressInfo).then(res => {
+            if(res && res.data) {
+                console.log(res.data);
+                setToggle(false)
+            }
+        })
+    }
+
 
     return (
         <div>
@@ -90,41 +114,41 @@ function NewInputAddress() {
                 <div className="input_box">
                     <div>이름</div>
                     <div className='input_area'>
-                        <input type="text" name='text'/>
+                        <input type="text" name='text' value={addressInfo.userName} onChange={e => setAddressInfo({...addressInfo, userName: e.target.value})}/>
                     </div>
                 </div>
                 <div className="input_box">
                     <div>휴대폰번호</div>
                     <div className='input_area'>
-                        <input type="text" name='text'/>
+                        <input type="text" name='text' value={addressInfo.phone} onChange={e => setAddressInfo({...addressInfo, phone: e.target.value})}/>
                     </div>
                 </div>
                 <div>"-" 없이 숫자만 입력해 주세요</div>
                 <div className="input_box">
                     <div>배송지주소</div>
                     <div className='input_area'>
-                        <input type="text" name='text' />
+                        <input type="text" name='text' value={address.zonecode} disabled/>
                         <div className='input_sub_btn' onClick={openModal}>찾기</div>
                     </div>
                 </div>
                 {/* 이부분 css 수정*/}
                 <div className="input_box">
                     <div className='input_area'>
-                        <input type="text" name='text'/>
+                        <input type="text" name='text' value={address.fullAddress} disabled/>
                     </div>
                 </div>
                 <div className="input_box">
                     <div className='input_area'>
-                        <input type="text" name='text'/>
+                        <input type="text" name='text' value={address.addressDetail} onChange={ e => setAddress({...address, addressDetail: e.target.value})}/>
                     </div>
                 </div>
                 {/* 이부분 css 수정*/}
             </div>
             <div className='btn_area'>
-                <div className="btn line">취소</div>    
-                <div className="btn line">확인</div>    
+                <div className="btn line" onClick={() => setToggle(false)}>취소</div>    
+                <div className="btn line" onClick={saveAddress}>확인</div>    
             </div>
-            <Modal open={modalOpen} close={closeModal} target={'address'}/>
+            <Modal open={modalOpen} close={closeModal} target={'address'} address={address} setAddress={setAddress}/>
         </div>
     )
 }
@@ -147,12 +171,16 @@ function ShoppingAddress() {
     useEffect(() => {
         if(passwordCheck){
             useraApi.getAddress(userId).then(res => {
-                setAddressInfo(res.data);
+                // setAddressInfo(res.data);
+                if(res && res.data){
+                    console.log(res.data);
+                    setAddressInfo(res.data);
+                }
             });
             console.log(addressInfo);
         }
         // 여기에 코드를 적자
-    }, [passwordCheck]);
+    }, [passwordCheck, toggle]);
     
     return (
         <div>
@@ -169,13 +197,13 @@ function ShoppingAddress() {
                 {!toggle && addressInfo.length > 0 && <div>
                     <div className='address_input_area'>
                         { addressInfo.map((address, key) => {
-                                return <div>
+                                return <div key={key}>
                                     {correction === null && <>
-                                        <span>이름</span>
+                                        <span>{address.userName}</span>
                                         <span onClick={() => setCorrection(key)}>수정</span>    
                                         <span>삭제</span>
-                                        <div>핸드폰 번호</div>    
-                                        <div>{address}</div>
+                                        <div>{address.phone}</div>    
+                                        <div>{address.fullAddress} {address.addressDetail}</div>
                                     </>}
                                     {correction === key && <NewInputAddress/>}    
                                 </div>
@@ -184,7 +212,7 @@ function ShoppingAddress() {
                     </div>
                 </div>}
                 {/* 새로 입력 */}
-                {toggle && <NewInputAddress/>}
+                {toggle && <NewInputAddress setToggle={setToggle}/>}
             </div>}
         </div>
     )

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shopping.cosmos.service.impl.UserServiceImpl;
+import com.shopping.cosmos.vo.AddressInfoVO;
 import com.shopping.cosmos.vo.LoginRequest;
 import com.shopping.cosmos.vo.UserVO;
 
@@ -34,19 +36,23 @@ public class UserController {
 		return userServiceImpl.confirmPassword(password);
 	}
 	
+	@GetMapping("/address/{id}")
+	public ResponseEntity<?> getAddress(@PathVariable("id") String id) {
+		List<AddressInfoVO> addressinfo = userServiceImpl.getAddressByUserId(id);
+		
+		return ResponseEntity.ok(addressinfo);
+	}
+	
 	@PostMapping("/address")
-	public List<String> getAddress(@RequestBody String id) {
-		System.out.println("주소를 받아 봅시다");
-		
-		List<String> test = new ArrayList<String>();
-		
-		test.add("주소1");
-		test.add("주소2");
-		test.add("주소3");
-		test.add("주소4");
-		test.add("주소5");
-		
-		return test;
+	public ResponseEntity<?> saveAddress(@RequestBody AddressInfoVO addressInfo) {
+		int result = userServiceImpl.saveAddress(addressInfo);
+
+		if(result == 1) {
+			return ResponseEntity.ok(true);			
+		}
+		else {
+			return ResponseEntity.ok(false);
+		}
 	}
 	
 }

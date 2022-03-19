@@ -8,17 +8,20 @@ import "../../style/component/common/Modal.scss"
 function Modal(props) {
 
     const { open, close, target } = props;
-    
+    const setAddress = props.setAddress;
+    const address = props.address;
+
     return (
       // <div className={ open ? 'modal active' : 'modal'} onClick={close}>
       <div className={ open ? 'modal active' : 'modal'}>
-        <div className="modal_main">
+        {/* <div className="modal_main"> */}
+        <div className={target === 'address' ? 'modal_main address' : 'modal_main'}>
           <div className="modal_head">
             <button onClick={close}>close</button>
           </div>
           <div className="modal_body">
               {target === 'login' && <SignIn close={close}/>}
-              {target === 'address' && <DaumPostcode/>}
+              {target === 'address' && <DaumPostcode address={address} setAddress={setAddress}/>}
           </div>
         </div>
       </div>
