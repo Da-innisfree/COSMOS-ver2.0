@@ -43,4 +43,9 @@ from tb_product pro LEFT OUTER JOIN tb_product_detail detail
 on pro.product_id = detail.product_id where pro.product_id = #{id}  
 </select>
 
+<select id="readCategory">
+</select>
+
+
+
 </mapper>

@@ -6,21 +6,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ProductController {
 	
-//	@GetMapping("/product/${id}")
-//	String productList() {
-//		return "»óÇ°¸®½ºÆ®";
-//	}
-//	
-//	@GetMapping("/${gender}/${id}")
-//	String productDetail() {
-//		return "»óÇ°µğÅ×ÀÏ";
-//	}
-//	
-//	@GetMapping("/cart/${userID}")
-//	String cartPage() {
-//		return "Ä«Æ®ÆäÀÌÁö";
-//	}
-//	
-//	
+	//ìƒí’ˆë¦¬ìŠ¤íŠ¸ ë³´ë‚´ë©´ì„œ ì»¬ëŸ¬ëŠ” ì¤‘ë³µì œê±°í•´ì„œ Listë¡œ ì „ì†¡
+	@GetMapping("/${gender}/${category}")
+	String productList() {
+		return null;
+	}
+	
+	@GetMapping("/product/${id}")
+	String productDetail() {
+		return null;
+	}
+	
+	@GetMapping("/cart/${userID}")
+	String cartPage() {
+		return null;
+	}
+	
+	
 	
 }

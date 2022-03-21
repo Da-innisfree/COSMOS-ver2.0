@@ -1,5 +1,7 @@
 package com.shopping.cosmos.vo;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data

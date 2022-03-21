@@ -1,8 +1,11 @@
 package com.shopping.cosmos.vo;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class LoginRespones {
 	
 	private String token;
