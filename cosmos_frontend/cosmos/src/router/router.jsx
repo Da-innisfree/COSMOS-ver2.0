@@ -8,6 +8,8 @@ import SignIn from '../view/SignIn.jsx';
 import SignUp from '../view/Siginup.jsx';
 import MyPage from '../view/MyPage.jsx';
 
+import FireBaseTest from '../view/FireaBaseTest.jsx';
+
 
 const AppRouter = () => {
     return(
@@ -19,6 +21,8 @@ const AppRouter = () => {
                     <Route path="/signin" element={<SignIn/>} />
                     <Route path="/signup" element={<SignUp/>} />
                     <Route path="/mypage" element={<MyPage/>} />
+
+                    <Route path="/firebasetest" element={<FireBaseTest/>} />
                 </Routes>
         </BrowserRouter>
     );
