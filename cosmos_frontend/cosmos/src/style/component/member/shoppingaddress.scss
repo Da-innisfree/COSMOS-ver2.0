@@ -7,11 +7,41 @@
     }
 }
 
+.input_info_cho {
+    font-size: 12px;
+    display: flex;
+    gap: 1em;
+    & span {
+        cursor: pointer;
+    }
+
+}
+
 
 .address_input_area {
     display: flex;
     flex-direction: column;
     gap: 1em;
     width: 20vw;
-    margin: 10px 0 50px 0;
+    margin: 40px 0 50px 0;
+
+}
+
+.address_detaill_area {
+    font-size: 12px;
+    color: #999;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #999;
+
+    & .address_detaill_username {
+        padding-right: 20px;
+    }
+
+    & .address_detail_modify {
+        padding-right: 10px;
+    }
+
+    & .address_detail_phone {
+        padding-top: 5px;
+    }
 }

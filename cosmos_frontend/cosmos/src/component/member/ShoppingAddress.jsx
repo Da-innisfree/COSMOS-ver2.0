@@ -197,12 +197,12 @@ function ShoppingAddress() {
                 {!toggle && addressInfo.length > 0 && <div>
                     <div className='address_input_area'>
                         { addressInfo.map((address, key) => {
-                                return <div key={key}>
+                                return <div className='address_detaill_area' key={key}>
                                     {correction === null && <>
-                                        <span>{address.userName}</span>
-                                        <span onClick={() => setCorrection(key)}>수정</span>    
+                                        <span className='address_detaill_username'>{address.userName}</span>
+                                        <span className='address_detail_modify' onClick={() => setCorrection(key)}>수정</span>    
                                         <span>삭제</span>
-                                        <div>{address.phone}</div>    
+                                        <div className='address_detail_phone'>{address.phone}</div>    
                                         <div>{address.fullAddress} {address.addressDetail}</div>
                                     </>}
                                     {correction === key && <NewInputAddress/>}    
