@@ -6,6 +6,14 @@ import '../style/comm.scss'
 
 import testdata from '../assets/testdata/category_detail.json'
 
+function test() {
+    return (
+        <div>
+            <span>테스느</span>
+        </div>
+    )
+}
+
 function CategoryRadio(props) {
     if(!props.value){
         return
@@ -90,4 +98,4 @@ function PeoducctList() {
     ); 
 } 
     
-export default PeoducctList;
+export { PeoducctList, test };

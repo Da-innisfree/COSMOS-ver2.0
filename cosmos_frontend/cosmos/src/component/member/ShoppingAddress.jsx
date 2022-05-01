@@ -172,6 +172,7 @@ function ShoppingAddress() {
         if(passwordCheck){
             useraApi.getAddress(userId).then(res => {
                 // setAddressInfo(res.data);
+                console.log('res', res)
                 if(res && res.data){
                     console.log(res.data);
                     setAddressInfo(res.data);

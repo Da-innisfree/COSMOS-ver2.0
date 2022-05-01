@@ -5,6 +5,7 @@ function FireBaseTest () {
     
     const [attachment, setAttachment] = useState() 
     const [file, setFile] = useState('')
+    const [attachmentUrl, setAttachmentUrl] = useState('')
     
     const onFileChange = (event) => {
         const {target:{files, value}} = event;
@@ -26,7 +27,7 @@ function FireBaseTest () {
       const saveFile = async () => {
         console.log('file', file);
         console.log('attachment', attachment);
-        let attachmentUrl = "";
+        setAttachmentUrl("");
         if(attachment !== ""){
             const storageRef = firebaseStorage.ref();
             const newFileName = 'testfile';
@@ -34,7 +35,7 @@ function FireBaseTest () {
             const attachmentRef = storageRef.child(childName);
             // let uploadTask = storageRef.child(childName).put(f.file);
             const response = await attachmentRef.putString(attachment, "data_url")
-            attachmentUrl = await response.ref.getDownloadURL()
+            setAttachmentUrl(await response.ref.getDownloadURL())
         }
 
         if(attachmentUrl !== ""){
@@ -44,8 +45,6 @@ function FireBaseTest () {
         // const attachmentRef = storageService.ref().child(`${userObj.uid}/${uuidv4()}`);
       }
 
-    //   console.log('firebaseStorage', firebaseStorage)
-
     return (
         <div>
             <input type="file" accept="image/*" onChange={onFileChange} value={file}/>
@@ -53,6 +52,7 @@ function FireBaseTest () {
             {attachment && (
             <div>
                 <img src={attachment} width="50px" height="50px" alt="attachment"/>
+                <img src={attachmentUrl} width="50px" height="50px" alt="attachment"/>
                 <button onClick={onClearAttachment}>Clear</button>
             </div>
             )}
