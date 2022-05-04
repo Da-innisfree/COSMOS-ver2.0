@@ -26,10 +26,11 @@ import com.shopping.cosmos.service.SmsService;
 @Service
 public class SmsServiceImpl implements SmsService{
 
-	private String serviceId = "발송정보는 따로있";
-	private String accessKey ="발송정보는 따로있";
-	private String secretKey = "발송정보는 따로있";
-	private String fromPhone = "발송정보는 따로있";
+  private String serviceId = "ncp:sms:kr:271696169322:test";;
+  private String accessKey ="JDTyF8XFZdAIwgYTV4vV";
+  private String secretKey = "fhJTvNVjVP0UVXrkiCqIAulGk4uqf22FWsZqgo9o";
+  private String fromPhone = "01093481890";
+
 	
 	@Autowired
 	private ObjectMapper objectMapper; //????뭔지 확인

@@ -6,7 +6,7 @@ import '../style/comm.scss'
 
 import testdata from '../assets/testdata/category_detail.json'
 
-function test() {
+function Test() {
     return (
         <div>
             <span>테스느</span>
@@ -98,4 +98,4 @@ function PeoducctList() {
     ); 
 } 
     
-export { PeoducctList, test };
+export { PeoducctList, Test };
