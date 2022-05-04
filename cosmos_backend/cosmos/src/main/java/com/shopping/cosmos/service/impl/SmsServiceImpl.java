@@ -26,10 +26,7 @@ import com.shopping.cosmos.service.SmsService;
 @Service
 public class SmsServiceImpl implements SmsService{
 
-  private String serviceId = "ncp:sms:kr:271696169322:test";;
-  private String accessKey ="JDTyF8XFZdAIwgYTV4vV";
-  private String secretKey = "fhJTvNVjVP0UVXrkiCqIAulGk4uqf22FWsZqgo9o";
-  private String fromPhone = "01093481890";
+
 
 	
 	@Autowired
