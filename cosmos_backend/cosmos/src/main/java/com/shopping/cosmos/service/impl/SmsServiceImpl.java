@@ -35,6 +35,11 @@ public class SmsServiceImpl implements SmsService{
 	private final String SENS_API_URL = "https://sens.apigw.ntruss.com"; // 호스트 URL
 	private final String SENS_REQ_URL = "/sms/v2/services/%s/messages"; // 요청 URL
 	private final String SENS_METHOD = "POST"; // 요청 Method
+	private String accessKey ="";
+	private String secretKey="";
+	private String serviceId="";
+	private String fromPhone="";
+	
 	
 	@Override
 	public SmsResponseDto sendSms(String recipientPhoneNumber, String content) throws Exception {

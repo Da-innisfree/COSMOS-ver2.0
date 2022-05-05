@@ -22,13 +22,13 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 
-	public List<ProductVO> getProductList(ProductVO vo) {
-		return mapper.readProductList(vo);
+	public List<ProductVO> getProductList(String gender, String category) {
+		return mapper.readProductList(gender, category);
 	}
 
 	@Override
-	public List<CategoryVO> getCategoryList(String category) {
-		// TODO Auto-generated method stub
+	public List<CategoryVO> readCategoryDetails(String gender, String category) {
+		
 		return null;
 	}
 

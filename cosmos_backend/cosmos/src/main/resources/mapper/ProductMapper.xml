@@ -30,11 +30,15 @@
 </resultMap>
 
 <select id="readProductList" resultType="list">
-SELECT *
-FROM tb_product pro 
-LEFT OUTER JOIN tb_product_detail detail on pro.product_id = detail.product_id 
-LEFT OUTER JOIN tb_category cat on pro.category_id = cat.category_id
-WHERE pro.product_id = #{id}  
+select
+distinct 
+pro.product_id,
+pro.product_title,
+pro.product_price,
+detail.product_color
+from tb_product pro LEFT OUTER JOIN tb_product_detail detail
+on pro.product_id = detail.product_id
+WHERE detail.product_stock > 0  
 </select>
 
 <select id="readProduct" resultMap="productMap">
@@ -43,10 +47,9 @@ from tb_product pro LEFT OUTER JOIN tb_product_detail detail
 on pro.product_id = detail.product_id where pro.product_id = #{id}  
 </select>
 
-<select id="readCategory" resultType="list">
-select distinct category_detail from tb_category where gender=#{gender} and category=#{category}
+<select id="readCategoryDetails" resultType="com.shopping.cosmos.vo.CategoryVO">
+select category_detail from tb_category where gender=#{gender} and category=#{category}
 </select>
-
 
 
 </mapper>

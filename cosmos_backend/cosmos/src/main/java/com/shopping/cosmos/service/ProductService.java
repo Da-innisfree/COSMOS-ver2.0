@@ -7,7 +7,7 @@ import com.shopping.cosmos.vo.ProductVO;
 
 public interface ProductService {
 	ProductVO getProduct(int id);
-	List<ProductVO> getProductList(ProductVO vo);
-	List<CategoryVO> getCategoryList(String category);
+	List<ProductVO> getProductList(String gender, String category);
+	List<CategoryVO> readCategoryDetails(String gender, String category);
 	
 }

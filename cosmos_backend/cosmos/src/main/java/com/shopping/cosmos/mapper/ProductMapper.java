@@ -11,8 +11,8 @@ import com.shopping.cosmos.vo.ProductVO;
 public interface ProductMapper {
 	
 	ProductVO readProduct(int id);
-	List<ProductVO> readProductList(ProductVO vo);
-	List<CategoryVO> readCategory(CategoryVO vo);
+	List<ProductVO> readProductList(String gender, String category);
+	List<CategoryVO> readCategoryDetails(String gender, String category);
 	
 	
 }
