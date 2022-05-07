@@ -28,8 +28,8 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List<CategoryVO> readCategoryDetails(String gender, String category) {
-		
-		return null;
+		System.out.println(gender + category );
+		return mapper.readCategoryDetails(gender, category);
 	}
 
 }

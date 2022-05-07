@@ -38,9 +38,9 @@ function FireBaseTest () {
             setAttachmentUrl(await response.ref.getDownloadURL())
         }
 
-        if(attachmentUrl !== ""){
-            console.log('attachmentUrl',attachmentUrl);
-        }
+        // if(attachmentUrl !== ""){
+            console.log('attachmentUrl........',attachmentUrl);
+        // }
 
         // const attachmentRef = storageService.ref().child(`${userObj.uid}/${uuidv4()}`);
       }
@@ -53,6 +53,7 @@ function FireBaseTest () {
             <div>
                 <img src={attachment} width="50px" height="50px" alt="attachment"/>
                 <img src={attachmentUrl} width="50px" height="50px" alt="attachment"/>
+                {attachmentUrl}
                 <button onClick={onClearAttachment}>Clear</button>
             </div>
             )}

@@ -35,7 +35,7 @@ pro.product_id,
 pro.product_title,
 pro.product_price,
 (select product_detail_id from tb_product_detail),
-(select product_detail_id from product_color)
+(select product_color from tb_product_detail)
 from tb_product pro LEFT OUTER JOIN tb_product_detail detail
 on pro.product_id = detail.product_id
 WHERE detail.product_stock > 0  
@@ -49,7 +49,7 @@ from tb_product pro LEFT OUTER JOIN tb_product_detail detail
 on pro.product_id = detail.product_id where pro.product_id = #{id}  
 </select>
 
-<select id="readCategoryDetails" resultType="com.shopping.cosmos.vo.CategoryVO">
+<select id="readCategoryDetails" parameterType="String" resultType="com.shopping.cosmos.vo.CategoryVO">
 select category_detail from tb_category where gender=#{gender} and category=#{category}
 </select>
 
