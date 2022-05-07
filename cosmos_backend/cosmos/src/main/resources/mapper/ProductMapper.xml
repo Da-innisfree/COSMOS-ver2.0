@@ -5,9 +5,9 @@
 <mapper namespace="com.shopping.cosmos.mapper.ProductMapper">
 
 <resultMap type="com.shopping.cosmos.vo.ProductVO" id="productMap">
-<result column="product_id" property="id"/>
-<result column="product_title" property="title"/>
-<result column="product_price" property="price"/>
+<result column="product_id" property="product_id"/>
+<result column="product_title" property="product_title"/>
+<result column="product_price" property="product_price"/>
 <result column="description" property="description"/>
 <result column="details" property="details"/>
 <result column="reg_date" property="regDate"/>
@@ -23,22 +23,24 @@
 </resultMap>
 
 <resultMap type="com.shopping.cosmos.vo.CategoryVO" id="categoryMap">
-<result column="category_id" property="id"/>
+<result column="category_id" property="category_id"/>
 <result column="gender" property="gender"/>
 <result column="category" property="category"/>
 <result column="category_detail" property="categoryDetail"/>
 </resultMap>
 
-<select id="readProductList" resultType="list">
-select
-distinct 
+<select id="readProductList" resultMap="productMap">
+select 
 pro.product_id,
 pro.product_title,
 pro.product_price,
-detail.product_color
+(select product_detail_id from tb_product_detail),
+(select product_detail_id from product_color)
 from tb_product pro LEFT OUTER JOIN tb_product_detail detail
 on pro.product_id = detail.product_id
 WHERE detail.product_stock > 0  
+
+
 </select>
 
 <select id="readProduct" resultMap="productMap">
