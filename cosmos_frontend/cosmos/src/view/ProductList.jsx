@@ -1,10 +1,11 @@
-import React from 'react'; 
+import React, {useEffect} from 'react'; 
 import { Link } from "react-router-dom";
 
 import '../style/view/productlist.scss'
 import '../style/comm.scss'
 
 import testdata from '../assets/testdata/category_detail.json'
+import productApi from'../apis/Product.js'
 
 function Test() {
     return (
@@ -32,6 +33,17 @@ function PeoducctList() {
     const data = testdata
     console.log('testdata.............',data.category_detail);
 
+    useEffect(()=> {
+        productApi.getCategoryDetail('W','니트웨어')
+        .then( res => {
+            if(res && res.data){
+                
+                console.log('...........aaaa',res.data)
+            }
+        }
+
+        )
+    }, []);
     return ( 
         <div> 
             <div className="product_list_top">
