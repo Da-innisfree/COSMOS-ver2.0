@@ -49,8 +49,8 @@ from tb_product pro LEFT OUTER JOIN tb_product_detail detail
 on pro.product_id = detail.product_id where pro.product_id = #{id}  
 </select>
 
-<select id="readCategoryDetails" parameterType="String" resultType="com.shopping.cosmos.vo.CategoryVO">
-select category_detail from tb_category where gender=#{gender} and category=#{category}
+<select id="readCategoryDetails" parameterType="String" resultMap="categoryMap">
+select category_detail from tb_category where gender=#{param1} and category=#{param2}
 </select>
 
 
