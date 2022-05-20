@@ -27,8 +27,10 @@ public class ProductController {
 	}
 	
 	@GetMapping("/product/{id}")
-	public List<ProductVO> productDetail() {
-		return null;
+	public ProductVO productDetail(@PathVariable("id") String product_id) {
+		ProductVO vo = service.getProduct(product_id);
+		vo.setProDetails(service.getProductDetails(product_id));
+		return vo;
 	}
 	@GetMapping("/{gender}/{category}/detail")
 	public ResponseEntity<?> categoryDetail(@PathVariable("gender") String gender, @PathVariable("category") String category){

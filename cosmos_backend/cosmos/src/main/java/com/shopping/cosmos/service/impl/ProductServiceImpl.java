@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.shopping.cosmos.mapper.ProductMapper;
 import com.shopping.cosmos.service.ProductService;
 import com.shopping.cosmos.vo.CategoryVO;
+import com.shopping.cosmos.vo.ProductDetailVO;
 import com.shopping.cosmos.vo.ProductVO;
 
 @Service
@@ -16,9 +17,15 @@ public class ProductServiceImpl implements ProductService {
 	ProductMapper mapper;
 
 	@Override
-	public ProductVO getProduct(int id) {
-		return mapper.readProduct(id);
+	public ProductVO getProduct(String product_id) {
+		return mapper.readProduct(product_id);
 	}
+	
+	@Override
+	public List<ProductDetailVO> getProductDetails(String product_id) {
+		return mapper.readProductDetails(product_id);
+	}
+
 
 	@Override
 

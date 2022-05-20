@@ -11,8 +11,8 @@
 <result column="description" property="description"/>
 <result column="details" property="details"/>
 <result column="reg_date" property="regDate"/>
-<collection property="category" resultMap="categoryMap"/>
-<collection property="proDetails" resultMap="detailMap"/>
+<!-- <collection property="category" resultMap="categoryMap"/> -->
+<!-- <collection property="proDetails" resultMap="detailMap"/> -->
 </resultMap>
 
 <resultMap type="com.shopping.cosmos.vo.ProductDetailVO" id="detailMap">
@@ -45,8 +45,13 @@ WHERE detail.product_stock > 0
 
 <select id="readProduct" resultMap="productMap">
 select *
-from tb_product pro LEFT OUTER JOIN tb_product_detail detail 
-on pro.product_id = detail.product_id where pro.product_id = #{id}  
+from tb_product pro where pro.product_id = #{product_id}  
+</select>
+
+<select id="readProductDetails" resultMap="detailMap">
+select *
+from tb_product_detail detail LEFT OUTER JOIN tb_product pro
+on detail.product_id = pro.product_id  where pro.product_id = #{product_id}  
 </select>
 
 <select id="readCategoryDetails" parameterType="String" resultMap="categoryMap">
