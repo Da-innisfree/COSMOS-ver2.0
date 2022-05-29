@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'; 
+import React, { useCallback, useEffect, useState } from 'react'; 
 
 import useraApi from '../../apis/User.js';
 
@@ -12,18 +12,15 @@ function ShoppingAddressAuth(props) {
 
     let userId = localStorage.getItem("userId");
 
-    const [user, setUset] = useState({
-      email : '',
-    });
+    const [user, setUset] = useState({});
 
     const [password, setPassword] = useState('');
 
     useEffect(() => {
         useraApi.getUserInfo(userId).then(res => {
-            setUset({
-                ...user,
-                email : res.data.email,
-            })
+            if(res && res.data){
+                setUset(res.data)
+            }
         })
         // 여기에 코드를 적자
     }, [userId]);
@@ -168,20 +165,24 @@ function ShoppingAddress() {
 
     let userId = localStorage.getItem("userId");
 
+    const findAddress = useCallback(() => {
+        useraApi.getAddress(userId).then(res => {
+            if(res && res.data){
+                setAddressInfo(res.data);
+            }
+        });
+    }, [userId]);
+
     useEffect(() => {
         if(passwordCheck){
-            useraApi.getAddress(userId).then(res => {
-                // setAddressInfo(res.data);
-                console.log('res', res)
-                if(res && res.data){
-                    console.log(res.data);
-                    setAddressInfo(res.data);
-                }
-            });
-            console.log(addressInfo);
+            // useraApi.getAddress(userId).then(res => {
+            //     if(res && res.data){
+            //         setAddressInfo(res.data);
+            //     }
+            // });
+            findAddress();
         }
-        // 여기에 코드를 적자
-    }, [passwordCheck, toggle]);
+    }, [passwordCheck, toggle, findAddress]);
     
     return (
         <div>
@@ -199,7 +200,7 @@ function ShoppingAddress() {
                     <div className='address_input_area'>
                         { addressInfo.map((address, key) => {
                                 return <div className='address_detaill_area' key={key}>
-                                    {correction === null && <>
+                                    {correction !== key && <>
                                         <span className='address_detaill_username'>{address.userName}</span>
                                         <span className='address_detail_modify' onClick={() => setCorrection(key)}>수정</span>    
                                         <span>삭제</span>

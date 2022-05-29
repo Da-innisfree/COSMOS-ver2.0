@@ -32,7 +32,7 @@
                 }
 
                 .item_contents {
-                    background-color: orange;
+                    background-color: #ffffff;
                     height: 0px;
                     width: 100%;
                     position: fixed;
@@ -62,4 +62,8 @@
         align-items: center;
         justify-content: space-between;
     }
+}
+
+li {
+    cursor: pointer;
 }

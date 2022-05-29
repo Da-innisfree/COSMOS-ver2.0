@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'; 
+import React, { useCallback, useEffect, useState } from 'react'; 
 
 import useraApi from '../../apis/User.js';
 
@@ -12,25 +12,21 @@ function MemberPasswordCheck(props) {
 
     let userId = localStorage.getItem("userId");
 
-    const [user, setUset] = useState({
-        email : '',
-        name: '',
-        phone: '',
-    });
+    const [user, setUset] = useState({ });
 
     const [password, setPassword] = useState('');
 
-    useEffect(() => {
+    const findUserInfo = useCallback(() => {
         useraApi.getUserInfo(userId).then(res => {
-            setUset({
-                ...user,
-                email : res.data.email,
-                name: res.data.name,
-                phone: res.data.phone,
-            })
-        })
-        // 여기에 코드를 적자
-    }, [userId]);
+            if(res && res.data){
+                setUset(res.data);
+            }
+        });
+    }, [userId])
+
+    useEffect(() => {
+        findUserInfo();
+    }, [findUserInfo]);
 
     const onChangePassword = (e) => {
         setPassword(e.target.value);

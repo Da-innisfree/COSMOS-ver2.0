@@ -7,27 +7,37 @@ import MemberInfo from '../component/member/MemberInfo.jsx';
 import OrderInfo from '../component/member/OrderInfo.jsx';
 import ShoppingAddress from '../component/member/ShoppingAddress.jsx';
 
-function SelectPage(props) {
+// function SelectPage(props) {
 
 
-    if(props.select === 1){
-        return <MemberInfo/>
+//     // if(props.select === 1){
+//     //     return <MemberInfo/>
             
-    }
-    else if(props.select === 2){
-        return <OrderInfo/>
-    }
-    else if(props.select === 3){
-        return <ShoppingAddress/>
-    }
-    else if(props.select === 4){
-        return <div>배송지 관리</div>
-    }
-    else if(props.select === 5){
-        return <div>ㅇㅖ치금</div>
-    }
+//     // }
+//     // else if(props.select === 2){
+//     //     return <OrderInfo/>
+//     // }
+//     // else if(props.select === 3){
+//     //     return <ShoppingAddress/>
+//     // }
+//     // else if(props.select === 4){
+//     //     return <div>배송지 관리</div>
+//     // }
+//     // else if(props.select === 5){
+//     //     return <div>예치금</div>
+//     // }
 
-}
+//     return (
+//         <>
+//             {props.select === 1 && <MemberInfo/>}
+//             {props.select === 2 && <OrderInfo/>}
+//             {props.select === 3 && <ShoppingAddress/>}
+//             {props.select === 4 && <div>배송지 관리</div>}
+//             {props.select === 5 && <div>예치금</div>}
+//         </>
+//     )
+
+// }
 
 function MyPage() { 
 
@@ -47,7 +57,12 @@ function MyPage() {
             </div>
             <div className='mypage_content'>
                 <div className="member_info">
-                    <SelectPage select={selected}/>
+                    {/* <SelectPage select={selected}/> */}
+                    {selected === 1 && <MemberInfo/>}
+                    {selected === 2 && <OrderInfo/>}
+                    {selected === 3 && <ShoppingAddress/>}
+                    {selected === 4 && <div>배송지 관리</div>}
+                    {selected === 5 && <div>예치금</div>}
                 </div>
             </div>
         </div>      

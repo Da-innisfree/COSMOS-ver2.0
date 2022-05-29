@@ -25,40 +25,40 @@ function WarningBanner(props) {
     }
 }
 
-function Timer(props) {
-    const [minutes, setMinutes] = useState(1);
-    const [seconds, setSeconds] = useState(0);
+// function Timer(props) {
+//     const [minutes, setMinutes] = useState(1);
+//     const [seconds, setSeconds] = useState(0);
     
-    const countdown = setInterval(() => {
-        if (parseInt(seconds) > 0) {
-            setSeconds(parseInt(seconds) - 1);
-        }
-        if (parseInt(seconds) === 0) {
-            if (parseInt(minutes) === 0) {
-                clearInterval(countdown);
-            } else {
-                setMinutes(parseInt(minutes) - 1);
-                setSeconds(59);
-            }
-        }
-    }, 1000);
+//     const countdown = setInterval(() => {
+//         if (parseInt(seconds) > 0) {
+//             setSeconds(parseInt(seconds) - 1);
+//         }
+//         if (parseInt(seconds) === 0) {
+//             if (parseInt(minutes) === 0) {
+//                 clearInterval(countdown);
+//             } else {
+//                 setMinutes(parseInt(minutes) - 1);
+//                 setSeconds(59);
+//             }
+//         }
+//     }, 1000);
 
-    // useEffect(() => {
-    //     return () => clearInterval(countdown);
-    // }, [minutes, seconds]);
+//     // useEffect(() => {
+//     //     return () => clearInterval(countdown);
+//     // }, [minutes, seconds]);
 
-    if (props.warn || props.warn === null) {
-        return null;
-    }
+//     if (props.warn || props.warn === null) {
+//         return null;
+//     }
 
-    else if(props.target === 'authphone'){
-        return (
-            <div className="auth_timer">
-                남은시간 : {minutes}:{seconds < 10 ? `0${seconds}` : seconds}  
-            </div>
-        )
-    }
-}
+//     else if(props.target === 'authphone'){
+//         return (
+//             <div className="auth_timer">
+//                 남은시간 : {minutes}:{seconds < 10 ? `0${seconds}` : seconds}  
+//             </div>
+//         )
+//     }
+// }
 
 
 function SignUp() {
@@ -76,7 +76,7 @@ function SignUp() {
         passwordCheck: null,
     });
 
-    const [authTime, setAuthTime] = useState(null)
+    // const [authTime, setAuthTime] = useState(null)
 
     //newUser정보 저장
     const onChange = (e) => {
@@ -143,7 +143,7 @@ function SignUp() {
             console.log('핸드폰 번호 입력해라')
         }else {
             console.log('문자 전송')
-            setAuthTime(false);
+            // setAuthTime(false);
             Authapi.authPhone(newUser.phone).then();
         }
 

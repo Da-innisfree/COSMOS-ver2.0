@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'; 
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import '../style/view/productlist.scss'
 import '../style/comm.scss'
@@ -33,6 +33,10 @@ function PeoducctList() {
     const data = testdata
     console.log('testdata.............',data.category_detail);
 
+    const { gender, category } = useParams();
+
+    console.log('categorycategory',gender, category);
+
     useEffect(()=> {
         productApi.getCategoryDetail('W','니트웨어')
         .then( res => {
@@ -48,7 +52,7 @@ function PeoducctList() {
         <div> 
             <div className="product_list_top">
                 <div className="choice_content">
-                    <h1 className="product_title">상풍 품목</h1>
+                    <h1 className="product_title">{category}</h1>
                     <div className="btn_area">
                         <div>
                             <input type='radio' name='category' id='all'/><label for="all" className='radio_label category'>모두보기</label>

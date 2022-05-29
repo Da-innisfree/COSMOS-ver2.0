@@ -1,10 +1,12 @@
 import React, { useState } from 'react'; 
+import { useNavigate } from 'react-router-dom';
 
 import Modal from "../common/Modal.jsx";
 
 import '../../style/component/layout/Header.scss'
 
 function Header() { 
+    let navigate = useNavigate();
 
     const [modalOpen, setModalOpen] = useState(false);
 
@@ -67,8 +69,8 @@ function Header() {
                             <div className="content_menu">
                                 <ul>
                                     <li>New Arrivals</li>
-                                    <li>니트웨어</li>
-                                    <li>가디건</li>
+                                    <li onClick={() => navigate('/productlist/W/니트웨어')}>니트웨어</li>
+                                    <li onClick={() => navigate('/productlist/W/가디건', {replace: true})}>가디건</li>
                                     <li>캐시미어</li>
                                     <li>아우터웨어</li>
                                     <li>드레스</li>

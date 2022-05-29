@@ -1,5 +1,6 @@
 import React, { useState } from 'react'; 
 // import { Link } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
 import Authapi from '../apis/Auth.js';
 
@@ -34,12 +35,14 @@ function Signin(props) {
         }
     }
 
+    //redux 에서 관리?
     const login = () => {
         if(user.email && user.password){
             Authapi.signIn(user).then(res => {
                 console.log(res);
                 if(res && res.data){
                     console.log('login', res.data)
+                    console.log('jwt_decode', jwt_decode(res.data.token))
                     localStorage.setItem('token', res.data.token);
                     localStorage.setItem('userId', res.data.userId);
                     close();
