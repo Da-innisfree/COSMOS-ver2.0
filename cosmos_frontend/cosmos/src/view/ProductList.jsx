@@ -1,10 +1,9 @@
-import React, {useEffect} from 'react'; 
+import React, {useEffect, useState} from 'react'; 
 import { Link, useParams } from "react-router-dom";
 
 import '../style/view/productlist.scss'
 import '../style/comm.scss'
 
-import testdata from '../assets/testdata/category_detail.json'
 import productApi from'../apis/Product.js'
 
 function Test() {
@@ -15,38 +14,38 @@ function Test() {
     )
 }
 
-function CategoryRadio(props) {
-    if(!props.value){
-        return
-    }
-    else {
-        return (
-            <div>
-                <input type='radio' name='category' id={props.value}/><label for={props.value} className='radio_label category'>{props.value}</label>
-            </div>
-        )
-    }
-}
-
 
 function PeoducctList() { 
-    const data = testdata
-    console.log('testdata.............',data.category_detail);
+    const [categoryDetail, setCategoryDetail] = useState([]);
+    // const [product, setProduct] = useState([]);
 
     const { gender, category } = useParams();
 
     console.log('categorycategory',gender, category);
 
-    useEffect(()=> {
-        productApi.getCategoryDetail('W','니트웨어')
+    const findCategoryDetail = () => {
+        productApi.getCategoryDetail(gender,category)
         .then( res => {
             if(res && res.data){
-                
-                console.log('...........aaaa',res.data)
+                console.log(res.data)
+                setCategoryDetail(res.data)
             }
-        }
+        })
 
-        )
+    }
+
+    // const findProductList= () => {
+    //     productApi.getProductList('W','니트웨어')
+    //     .then( res => {
+    //         if(res && res.data){
+    //             setProduct(res.data)
+    //         }
+    //     })
+    // }
+
+    useEffect(()=> {
+        findCategoryDetail();
+        // findProductList();
     }, []);
     return ( 
         <div> 
@@ -55,10 +54,12 @@ function PeoducctList() {
                     <h1 className="product_title">{category}</h1>
                     <div className="btn_area">
                         <div>
-                            <input type='radio' name='category' id='all'/><label for="all" className='radio_label category'>모두보기</label>
+                            <input type='radio' name='category' id='all'/><label htmlFor="all" className='radio_label category'>모두보기</label>
                         </div>
-                        { data.category_detail.map((detail, index) => {
-                            return <CategoryRadio key={index} value={detail}/>
+                        {categoryDetail && categoryDetail.map((detail, index) => {
+                            return <div key={index}>
+                                        <input type='radio' name='category' id={detail}/><label htmlFor={detail} className='radio_label category'>{detail}</label>
+                                    </div>
                         })}
                     </div>
                 </div>

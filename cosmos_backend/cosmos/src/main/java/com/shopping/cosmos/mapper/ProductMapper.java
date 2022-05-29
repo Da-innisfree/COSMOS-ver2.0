@@ -14,7 +14,7 @@ public interface ProductMapper {
 	ProductVO readProduct(String product_id);
 	List<ProductDetailVO> readProductDetails(String product_id);
 	List<ProductVO> readProductList(String gender, String category);
-	List<CategoryVO> readCategoryDetails(String gender, String category);
+	List<String> readCategoryDetails(String gender, String category);
 	
 	
 }

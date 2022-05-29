@@ -34,7 +34,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<CategoryVO> readCategoryDetails(String gender, String category) {
+	public List<String> readCategoryDetails(String gender, String category) {
 		System.out.println(gender + category );
 		return mapper.readCategoryDetails(gender, category);
 	}

@@ -31,16 +31,10 @@
 
 <select id="readProductList" resultMap="productMap">
 select 
-pro.product_id,
-pro.product_title,
-pro.product_price,
-(select product_detail_id from tb_product_detail),
-(select product_color from tb_product_detail)
-from tb_product pro LEFT OUTER JOIN tb_product_detail detail
-on pro.product_id = detail.product_id
-WHERE detail.product_stock > 0  
-
-
+product_id,
+product_title,
+product_price
+from tb_product pro
 </select>
 
 <select id="readProduct" resultMap="productMap">
@@ -54,9 +48,15 @@ from tb_product_detail detail LEFT OUTER JOIN tb_product pro
 on detail.product_id = pro.product_id  where pro.product_id = #{product_id}  
 </select>
 
-<select id="readCategoryDetails" parameterType="String" resultMap="categoryMap">
+<select id="readCategoryDetails" resultType="String">
 select category_detail from tb_category where gender=#{param1} and category=#{param2}
 </select>
+
+<sql id='sql1'>
+select product_color from tb_product_detail detail LEFT OUTER JOIN  from tb_product pro
+on detail.product_id = pro.product_id
+WHERE detail.product_stock > 0  
+</sql>
 
 
 </mapper>
