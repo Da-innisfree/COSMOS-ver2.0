@@ -14,3 +14,24 @@ cosmos 이미지 '/'
 로그인 -> 회원가입
 
 implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+
+앞
+react
+scss
+redux
+router
+jwtdecode
+
+뒤
+java11
+스프링 부트
+스프링 시큐리티
+jwt
+
+python
+장고 ? 플라스크
+pandas
+matplotlib
+seaborn
+sklearn
+
