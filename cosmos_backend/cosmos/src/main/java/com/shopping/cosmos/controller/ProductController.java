@@ -20,26 +20,32 @@ public class ProductController {
 	@Autowired
 	ProductService service; 
 			
-	//상품리스트 보내면서 컬러는 중복제거해서 List로 전송
+//	상품 리스트
 	@GetMapping("/{gender}/{category}")
-	public List<ProductVO> productList(@PathVariable("gender") String gender, @PathVariable("category") String category) {
-		return service.getProductList(gender,category);		
+	public  ResponseEntity<?> productList(@PathVariable("gender") String gender, @PathVariable("category") String category) {
+		service.getProductList(gender,category);
+		
+		return ResponseEntity.ok(null);
 	}
 	
+//	상품 상세
 	@GetMapping("/product/{id}")
-	public ProductVO productDetail(@PathVariable("id") String product_id) {
+	public ResponseEntity<?> productDetail(@PathVariable("id") String product_id) {
 		ProductVO vo = service.getProduct(product_id);
 		vo.setProDetails(service.getProductDetails(product_id));
-		return vo;
+		return ResponseEntity.ok(vo);
 	}
+	
+//	카테고리 디테일 리스트 (String 배열)
 	@GetMapping("/{gender}/{category}/detail")
 	public ResponseEntity<?> categoryDetail(@PathVariable("gender") String gender, @PathVariable("category") String category){
 		System.out.println(gender + category );
 		return ResponseEntity.ok(service.readCategoryDetails(gender, category));
 	}
 	
+//	카트 리스트
 	@GetMapping("/cart/{userID}")
-	public String cartPage() {
+	public ResponseEntity<?> cartPage() {
 		return null;
 	}
 	
