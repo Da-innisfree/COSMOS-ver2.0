@@ -1,6 +1,8 @@
 import React, { useState } from 'react'; 
 import { useNavigate } from 'react-router-dom';
 
+import { AiOutlineSearch } from "react-icons/ai";
+
 import Modal from "../common/Modal.jsx";
 
 import '../../style/component/layout/Header.scss'
@@ -169,11 +171,11 @@ function Header() {
                 </ul>
             </div>
             <div className="header_right">
-                <div>검색</div>
+                <AiOutlineSearch className='pointer'/>
                 <div>배송국가</div>
                 {/* <a href="/signin">로그인</a> */}
                 {login && <a href='/mypage'>마이 페이지</a>}
-                {!login && <button onClick={openModal}>로그인</button>}
+                {!login && <div className='pointer' onClick={openModal}>로그인</div>}
                 {login && <button onClick={logOut}>로그아웃</button>}
                 <Modal open={modalOpen} close={closeModal} target={'login'}/>
             </div>

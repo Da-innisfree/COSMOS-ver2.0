@@ -1,0 +1,28 @@
+.product_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &.mini {
+        width: 250px;
+        height: 100%;
+        & .product_img_wrap {
+            width: 250px;
+            height: 360px;
+            >img {
+                width: 250px;
+                height: 360px;
+            }
+        }
+
+        & .product_content {
+            width: 100%;
+            color: var(--font-color);
+            & .product_title {
+                margin: 3px 0;
+            }
+            & .product_price {
+                font-weight: 600;
+            }
+        }
+    }
+}

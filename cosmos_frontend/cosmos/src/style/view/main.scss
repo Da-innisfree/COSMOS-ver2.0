@@ -23,10 +23,7 @@
     //height: 100vh;
     .area_top {
         width: 100%;
-        height: 960px;
-        // background-image: url(../../assets/main/main_top_img.jpg);
-        // background-size: 100% 960px;
-        background-color: green;
+        height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -35,27 +32,90 @@
         }
     }
     .area_middle {
-        width: 100%;
-        height: 300px;
-        background-color: purple;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        height: 100%;
+        margin: 0 8vw;
+   
         .content {
             @include comm_contne();
         }
+
     }
     .area_bottom {
-        width: 100%;
-        height: 960px;
-        // background-image: url(../../assets/main/main_bottom_img.jpg);
-        // background-size: 100% 960px;
-        background-color: blue;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        text-align: center;
+        margin: 0 8vw;
         .content {
             @include comm_contne();
         }
+        & .middle_title {
+            // border-bottom: 1px solid #000000;
+        }
+        & .main_bottom_content {
+            display: flex;
+            align-items: center;
+            margin: auto;
+            position: relative;
+            width: 1500px;
+            height: 450px;
+            & .left_img {
+                position: absolute;
+                left: 0;
+                width: 750px;
+                height: 390px;
+                background-image: url(../../assets/tmpimage/tmpbottomimgleft.jpg);
+                background-size: 750px 390px;
+                background-repeat: no-repeat;
+                transition: 0.2s;
+                &:hover {
+                    width: 850px;
+                    height: 450px;
+                    background-size: 850px 450px;
+                    z-index: 1;
+                    transition: 0.4s;
+                    cursor: pointer;
+                }
+            }
+            & .right_img {
+                position: absolute;
+                right: 0;
+                width: 750px;
+                height: 390px;
+                background-image: url(../../assets/tmpimage/tmpbottomimgright.jpg);
+                background-size: 750px 390px;
+                background-repeat: no-repeat;
+                transition: 0.2s;
+                &:hover {
+                    width: 850px;
+                    height: 450px;
+                    background-size: 850px 450px;
+                    z-index: 1;
+                    transition: 0.4s;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+.tmp_bg_img {
+    background-image: url(../../assets/main/100.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 800px;
+}
+
+.tmp_event_area {
+    height: 800px;
+}
+
+.bg_video {
+    position: relative;
+    overflow: hidden;
+    height: 400px;
+    margin: 0 8vw;
+    & video {
+        position: absolute;
+        width: 100%;
     }
 }

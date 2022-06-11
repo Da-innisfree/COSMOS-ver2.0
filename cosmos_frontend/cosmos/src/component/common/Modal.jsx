@@ -1,5 +1,7 @@
 import React from 'react'; 
 
+import { AiOutlineClose } from "react-icons/ai";
+
 import SignIn from "../../view/SignIn.jsx";
 import DaumPostcode from '../common/DaumPostCode.jsx';
 
@@ -17,7 +19,7 @@ function Modal(props) {
         {/* <div className="modal_main"> */}
         <div className={target === 'address' ? 'modal_main address' : 'modal_main'}>
           <div className="modal_head">
-            <button onClick={close}>close</button>
+            <AiOutlineClose className='pointer' onClick={close}/>
           </div>
           <div className="modal_body">
               {target === 'login' && <SignIn close={close}/>}
