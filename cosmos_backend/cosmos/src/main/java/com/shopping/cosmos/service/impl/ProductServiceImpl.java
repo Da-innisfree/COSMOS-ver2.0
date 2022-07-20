@@ -17,8 +17,8 @@ public class ProductServiceImpl implements ProductService {
 	ProductMapper mapper;
 
 	@Override
-	public ProductVO getProduct(String product_id) {
-		return mapper.readProduct(product_id);
+	public List<ProductVO> getProductList(String gender, String category) {
+		return mapper.readProductList(gender, category);
 	}
 	
 	@Override
@@ -26,17 +26,20 @@ public class ProductServiceImpl implements ProductService {
 		return mapper.readProductDetails(product_id);
 	}
 
-
 	@Override
-
-	public List<ProductVO> getProductList(String gender, String category) {
-		return mapper.readProductList(gender, category);
+	public ProductVO getProduct(String product_id) {
+		return mapper.readProduct(product_id);
 	}
-
+	
 	@Override
 	public List<String> readCategoryDetails(String gender, String category) {
 		System.out.println(gender + category );
 		return mapper.readCategoryDetails(gender, category);
+	}
+
+	@Override
+	public List<ProductDetailVO> getProductColors(String product_id) {
+		return mapper.readColors(product_id);
 	}
 
 }

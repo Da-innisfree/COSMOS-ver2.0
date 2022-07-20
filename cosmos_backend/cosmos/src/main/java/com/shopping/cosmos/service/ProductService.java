@@ -11,6 +11,7 @@ public interface ProductService {
 	List<ProductDetailVO> getProductDetails(String product_id);
 	List<ProductVO> getProductList(String gender, String category);
 	List<String> readCategoryDetails(String gender, String category);
+	List<ProductDetailVO> getProductColors(String product_id);
 	
 	
 }

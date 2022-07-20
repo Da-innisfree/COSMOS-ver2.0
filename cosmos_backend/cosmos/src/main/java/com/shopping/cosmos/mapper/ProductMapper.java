@@ -11,10 +11,10 @@ import com.shopping.cosmos.vo.ProductVO;
 @Mapper
 public interface ProductMapper {
 	
-	ProductVO readProduct(String product_id);
-	List<ProductDetailVO> readProductDetails(String product_id);
 	List<ProductVO> readProductList(String gender, String category);
+	List<ProductDetailVO> readProductDetails(String product_id);
+	ProductVO readProduct(String product_id);
 	List<String> readCategoryDetails(String gender, String category);
-	
+	List<ProductDetailVO> readColors(String product_id);
 	
 }

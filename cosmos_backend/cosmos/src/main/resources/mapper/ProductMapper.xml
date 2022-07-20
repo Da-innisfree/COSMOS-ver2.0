@@ -4,23 +4,26 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.shopping.cosmos.mapper.ProductMapper">
 
+<resultMap type="com.shopping.cosmos.vo.ProductVO" id="productListMap">
+<result column="product_id" property="product_id"/>
+<result column="product_title" property="product_title"/>
+<result column="product_price" property="product_price"/>
+</resultMap>
+
 <resultMap type="com.shopping.cosmos.vo.ProductVO" id="productMap">
 <result column="product_id" property="product_id"/>
 <result column="product_title" property="product_title"/>
 <result column="product_price" property="product_price"/>
 <result column="description" property="description"/>
 <result column="details" property="details"/>
-<result column="reg_date" property="regDate"/>
-<!-- <collection property="category" resultMap="categoryMap"/> -->
-<!-- <collection property="proDetails" resultMap="detailMap"/> -->
 </resultMap>
 
 <resultMap type="com.shopping.cosmos.vo.ProductDetailVO" id="detailMap">
-<result column="product_detail_id" property="id"/>
-<result column="product_color" property="color"/>
-<result column="product_size" property="size"/>
-<result column="product_stock" property="stock"/>
-</resultMap>
+<result column="product_detail_id" property="product_detail_id"/>
+<result column="product_color" property="product_color"/>
+<result column="product_size" property="product_size"/>
+<result column="product_stock" property="product_stock"/>
+</resultMap> 
 
 <resultMap type="com.shopping.cosmos.vo.CategoryVO" id="categoryMap">
 <result column="category_id" property="category_id"/>
@@ -29,34 +32,57 @@
 <result column="category_detail" property="categoryDetail"/>
 </resultMap>
 
-<select id="readProductList" resultMap="productMap">
-select 
-product_id,
-product_title,
-product_price
-from tb_product pro
+<select id="readProductList" resultMap="productListMap" >
+SELECT 
+tp.product_id,
+tp.product_title,
+tp.product_price
+FROM(
+SELECT 
+pro.product_id,
+pro.product_title,
+pro.category_id,
+detail.product_stock,
+pro.product_price,
+COUNT(*)
+FROM tb_product pro 
+INNER JOIN tb_product_detail detail
+ON detail.product_id = pro.product_id 
+WHERE detail.product_stock>0 GROUP BY pro.product_id HAVING COUNT(*)>0) tp
+INNER JOIN tb_category cat
+ON cat.category_id = tp.category_id
+WHERE cat.gender=#{param1} AND cat.category=#{param2}
 </select>
 
 <select id="readProduct" resultMap="productMap">
-select *
-from tb_product pro where pro.product_id = #{product_id}  
+select 
+product_id,
+product_title,
+product_price,
+description,
+details
+from tb_product where product_id = #{product_id}  
 </select>
 
-<select id="readProductDetails" resultMap="detailMap">
-select *
+<select id="readProductDetails" resultMap="detailMap" >
+select 
+detail.product_detail_id,
+detail.product_size,
+detail.product_color,
+detail.product_stock
 from tb_product_detail detail LEFT OUTER JOIN tb_product pro
 on detail.product_id = pro.product_id  where pro.product_id = #{product_id}  
-</select>
+</select> 
 
-<select id="readCategoryDetails" resultType="String">
+<select id="readCategoryDetails" resultType="String"> 
 select category_detail from tb_category where gender=#{param1} and category=#{param2}
 </select>
 
-<sql id='sql1'>
-select product_color from tb_product_detail detail LEFT OUTER JOIN  from tb_product pro
+<select id="readColors" resultType="com.shopping.cosmos.vo.ProductDetailVO">
+select product_color from tb_product_detail detail LEFT OUTER JOIN tb_product pro
 on detail.product_id = pro.product_id
-WHERE detail.product_stock > 0  
-</sql>
+WHERE detail.product_stock > 0 and pro.product_id = #{product_id}  
+</select> 
 
 
 </mapper>
